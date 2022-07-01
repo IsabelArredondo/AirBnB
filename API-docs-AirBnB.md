@@ -2,7 +2,7 @@
 
 ## Database Schema Design
 
-`<insert database schema design here>`
+<iframe width="560" height="315" src='https://dbdiagram.io/embed/62ab47999921fe2a961fa551'> </iframe>
 
 ## API Documentation
 
@@ -76,7 +76,7 @@ information.
 * Require Authentication: false
 * Request
   * Method: post 
-  * URL: '/users/'
+  * URL: '/session/'
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -252,7 +252,7 @@ Returns all the spots owned (created) by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: '/spots/:ownerid'
+  * URL: '/user/spots/'
   * Body: none
 
 * Successful Response
@@ -348,7 +348,7 @@ Creates and returns a new spot.
 * Require Authentication: true
 * Request
   * Method: post
-  * URL: /spots 
+  * URL: /user/spots 
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -423,7 +423,7 @@ Updates and returns an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: put 
-  * URL: /spots/:id
+  * URL: /user/spots/:id
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -511,7 +511,7 @@ Deletes an existing spot.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: delete 
-  * URL: /spots/:id
+  * URL: /user/spots/:id
   * Body: none
 
 * Successful Response
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /reviews/:userid
+  * URL: /user/reviews/:userid
   * Body: none
 
 * Successful Response
@@ -652,7 +652,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: post
-  * URL: /reviews/:spotid
+  * URL: /spot/:spotid/review
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -837,7 +837,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: get 
-  * URL: /bookings/:userid
+  * URL: /user/bookings/
   * Body: none
 
 * Successful Response
@@ -882,7 +882,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /bookings/:spotid 
+  * URL: /spot/:spotid/bookings
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -951,7 +951,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: post
-  * URL: /bookings/:spotid
+  * URL: /spot/:spotid/bookings
   * Body: none
 
 * Successful Response
@@ -1189,7 +1189,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: post
-  * URL: /reviews/:id
+  * URL: /reviews/:id/image
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1251,7 +1251,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: delete
-  * URL: /images/:id
+  * URL: user/images/:imageableId
   * Body: none
 
 * Successful Response
