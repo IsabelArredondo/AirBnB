@@ -1,13 +1,8 @@
 {
-  "name": "ApiProject",
+  "name": "authenticate-me",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "dependencies": {
-    "pg": "^8.7.3",
-    "bcryptjs": "^2.4.3"
-  },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "install": "npm --prefix backend install backend",
@@ -16,15 +11,7 @@
     "sequelize-cli": "npm run --prefix backend sequelize-cli",
     "start": "npm start --prefix backend"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/IsabelArredondo/AirBnB.git"
-  },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/IsabelArredondo/AirBnB/issues"
-  },
-  "homepage": "https://github.com/IsabelArredondo/AirBnB#readme"
+  "license": "ISC"
 }
