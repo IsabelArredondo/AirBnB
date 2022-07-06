@@ -44,6 +44,10 @@ router.post(
     }
   );
 
+  //get Current User
+router.get('/current', requireAuth, async (req, res) => {
+  return res.json(req.user)
+})
 
   
 module.exports = router;
