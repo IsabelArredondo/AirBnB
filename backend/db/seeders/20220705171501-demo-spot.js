@@ -15,7 +15,8 @@ module.exports = {
         name: "App Academy",
         description: "Place where web developers are created",
         price: 123,
-        previewImage: null, 
+        previewImage: null,
+        
       },
       {
         ownerId: 2,
@@ -28,7 +29,7 @@ module.exports = {
         name: "Disco Dream",
         description: "Place where disco happens",
         price: 123,
-        previewImage: null, 
+        previewImage: null,
         
 
       },      
@@ -37,7 +38,7 @@ module.exports = {
 
   down: async (queryInterface, Sequelize) => {
     const Op = Sequelize.Op;
-    return queryInterface.bulkDelete('Users', {
+    return queryInterface.bulkDelete('Spots', {
       ownerId: { [Op.in]: [1, 2] }
     }, {});
   }

@@ -11,13 +11,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+     
+     Spot.belongsTo(models.User, {
+       foreignKey: 'ownerId', as: 'Owner'
+     })
+     Spot.hasMany(models.Review, {
+       foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true
+     })
+      Spot.hasMany(models.Image, {
+        foreignKey: 'spotId', as: 'images', onDelete: 'CASCADE', hooks: true
+      })
+      Spot.hasMany(models.Image, {
+        foreignKey: 'spotId', as: 'previewImage', onDelete: 'CASCADE', hooks: true
+      })
+      
+
     }
   }
   Spot.init({
     ownerId: { 
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
+      references: {
+        model: 'Users',
+        key: 'id'
+      }
     },
     address: {
       type: DataTypes.STRING,
@@ -56,12 +74,20 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    previewImage: {
-      type: DataTypes.STRING,
-     },
+     numReviews: {
+      type: DataTypes.INTEGER,
+    },
+    avgStarRating: {
+      type: DataTypes.DECIMAL(3, 2),
+    },
   }, {
     sequelize,
     modelName: 'Spot',
+    defaultScope: {
+      attributes: {
+        exclude: ['numReviews', 'avgStarRating']
+      }
+    }
   });
   return Spot;
 };

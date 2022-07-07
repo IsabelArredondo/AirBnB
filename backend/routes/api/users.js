@@ -45,9 +45,15 @@ router.post(
   );
 
   //get Current User
-router.get('/current', requireAuth, async (req, res) => {
-  return res.json(req.user)
-})
+  router.get("/currentUser", requireAuth, async (req, res) => {
+    const user = {
+      id: req.user.id, 
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+    };
+    return res.json(user);
+  });
 
   
 module.exports = router;
