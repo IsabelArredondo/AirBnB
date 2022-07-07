@@ -12,7 +12,13 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage('Invalid email'),
+    check('firstName')
+     .exists({ checkFalsy: true })
+     .withMessage('First Name is required'),
+    check('lastName')
+     .exists({ checkFalsy: true })
+     .withMessage('last Name is required'),
     check('password')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
@@ -26,6 +32,22 @@ router.post(
     validateSignup,
     async (req, res) => {
       const {firstName, lastName, email, password} = req.body;
+
+      const trackEmail = await User.findOne({
+        where: { email }
+      })
+
+      if (trackEmail) {
+        res.status(403);
+        res.json({
+          message: "User already exists!",
+          statusCode: 403,
+          errors: {
+            email: "User with that email already exists"
+          }
+        })
+      }
+      
       const user = await User.signup({ email, password, firstName, lastName });
   
       
