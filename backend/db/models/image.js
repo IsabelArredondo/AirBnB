@@ -11,13 +11,16 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
      // define association here
+     Image.belongsTo(
+      models.Review, {foreignKey: 'reviewId'}
+    )
       Image.belongsTo(
         models.Spot, {foreignKey: 'spotId'}
       )
 
-      Image.belongsTo(
-        models.Review, {foreignKey: 'reviewId'}
-      )
+      Image.belongsTo(models.User, {
+        foreignKey: 'userId'
+      })
     
     }
   }
@@ -36,7 +39,9 @@ module.exports = (sequelize, DataTypes) => {
       model: 'Spots',
       key: 'id'
     }
-    
+    },
+    place: {
+      type: DataTypes.STRING,
     },
     url: {
     type: DataTypes.STRING,

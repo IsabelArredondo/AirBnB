@@ -12,9 +12,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {
           model: 'Reviews',
-          key: 'id'
+         
         },
-        onDelete: 'CASCADE',
+        
       },
       spotId: {
         type: Sequelize.INTEGER,
@@ -23,6 +23,9 @@ module.exports = {
           key: 'id'
         },
         onDelete: 'CASCADE',
+      },
+      place: {
+        type: Sequelize.STRING,
       },
       url: {
         type: Sequelize.STRING,
