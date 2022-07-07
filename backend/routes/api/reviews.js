@@ -41,28 +41,68 @@ router.get('/userReviews', requireAuth, async (req, res) => {
 
 //Get all Reviews by a Spot's id
 router.get('/:spotId', async (req, res) => {
+  const spotId = req.params.spotId;
 
-  const review = await Review.findAll({
-    where: {spotId: req.params.spotId },
+  let spot  = await Spot.findByPk(spotId);
+
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot does not exist!",
+      "statusCode": 404
+    });
+  }
+
+  let reviews = await Review.findAll({
+    where: {
+      spotId: spotId,
+    },
     include: [
-      { model: User, attributes: ['id', 'firstName', 'lastName'] },
-      { model: Image, as: 'images', attributes: ['url']}
+      {
+        model: User,
+        attributes: ['id', 'firstName', 'lastName']
+      },
+      {
+        model: Image,
+        as: 'images',
+        attributes: ['url']
+      },
+
+
     ],
-  })
-   
- 
+  });
 
-  res.json({review})
-})
+  return res.json(reviews);
+});
 
+const validateSpots = [
+  check('review')
+  .exists({ checkFalsy: true })
+  .withMessage('Review text is required'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isLength({len:[1,5]})
+    .withMessage('Stars must be an integer from 1 to 5'),
+    handleValidationErrors
+]
 
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId', requireAuth, async (req, res) => {
-  let { review, stars } = req.body
+router.post('/:spotId', validateSpots, requireAuth, async (req, res) => {
 
+  const spotId = req.params.spotId;
+
+  let spot  = await Spot.findByPk(spotId);
+
+  if (!spot) {
+    return res.status(404).json({
+      "message": "Spot does not exist!",
+      "statusCode": 404
+    });
+  }
+
+  let { review, stars } = req.body
   const newReview = await Review.create({
     userId: req.user.id,
-    spotId: req.params.spotId,
+    spotId: spotId,
     review,
     stars,
   })
