@@ -31,11 +31,15 @@ router.post('/spots/:spotId', requireAuth, async (req, res) => {
     const newImage = await Image.create({
       spotId: spotId,
       imageableId: spot.ownerId,
-      imageableType: "Spot",
       url
     })
   
-    res.json(newImage)
+    res.json({
+      id: newImage.id,
+      imageableId: newImage.spotId,
+      imageableType: "Spot",
+      url: newImage.url
+    })
   })
 
 
@@ -70,11 +74,15 @@ router.post('/review/:reviewId', requireAuth, async (req, res) => {
   const newImage = await Image.create({
     reviewId: reviewId,
     imageableId: review.userId,
-    imageableType: "Review",
     url
   })
 
-  res.json(newImage)
+  res.json({
+      id: newImage.id,
+      imageableId: newImage.reviewId,
+      imageableType: "Spot",
+      url: newImage.url
+  })
 })
 
 

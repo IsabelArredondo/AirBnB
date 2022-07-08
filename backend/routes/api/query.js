@@ -1,5 +1,5 @@
 const express = require('express');
-const { Spot } = require('../../db/models');
+const { Spot, Image } = require('../../db/models');
 
 
 const router = express.Router();
@@ -31,6 +31,12 @@ router.get('/',  async (req, res) => {
     size = parseInt(size)
 
     let spot = await Spot.findAll({
+
+        include: {
+            model: Image,
+            as: 'previewImage',
+            attributes: ['url']
+          },
         
         limit: size,
         offset: (page - 1) * size,
@@ -38,7 +44,8 @@ router.get('/',  async (req, res) => {
     return res.json({
         spot,
         page,
-        size
+        size,
+        
     });
 
 
