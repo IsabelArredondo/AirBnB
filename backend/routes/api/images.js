@@ -52,7 +52,7 @@ router.post('/review/:reviewId', requireAuth, async (req, res) => {
 
   let allReviews = await Image.findAll({where: {reviewId: reviewId}})
    
-  if (allReviews.length > 10) {
+  if (allReviews.length >= 10) {
     return res.status(400).json({
         message: "Maximum number of images for this resource was reached",
         statusCode: 400
@@ -80,7 +80,7 @@ router.post('/review/:reviewId', requireAuth, async (req, res) => {
   res.json({
       id: newImage.id,
       imageableId: newImage.reviewId,
-      imageableType: "Spot",
+      imageableType: "Review",
       url: newImage.url
   })
 })
