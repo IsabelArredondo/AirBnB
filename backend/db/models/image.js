@@ -10,42 +10,52 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-     // define association here
-     Image.belongsTo(
-      models.Review, {foreignKey: 'reviewId'}
-    )
+      // define association here
       Image.belongsTo(
-        models.Spot, {foreignKey: 'spotId'}
+        models.Review, { foreignKey: 'reviewId' }
+      )
+      Image.belongsTo(
+        models.Spot, { foreignKey: 'spotId' }
       )
 
       Image.belongsTo(models.User, {
         foreignKey: 'userId'
       })
-    
+
     }
   }
   Image.init({
     reviewId: {
-    type: DataTypes.INTEGER,
-    
-    references: {
-      model: 'Reviews',
-      key: 'id'
-    }
+      type: DataTypes.INTEGER,
+
+      references: {
+        model: 'Reviews',
+        key: 'id'
+      }
+    },
+    UserId: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'User',
+        key: 'id'
+      }
     },
     spotId: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: 'Spots',
-      key: 'id'
-    }
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'Spots',
+        key: 'id'
+      }
     },
-    place: {
+    imageableId: {
+      type: DataTypes.INTEGER,
+    },
+    imageableType: {
       type: DataTypes.STRING,
     },
     url: {
-    type: DataTypes.STRING,
-    allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false
     }
   }, {
     sequelize,

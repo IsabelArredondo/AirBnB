@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Booking.belongsTo(models.User, {
         foreignKey: 'userId'
       })
+      Booking.belongsTo(models.Spot, {
+        foreignKey: 'spotId'
+      })
       
     }
   }
@@ -32,10 +35,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     startDate: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATEONLY,
+      allowNull: false
     },
     endDate: {
-      type: DataTypes.DATE
+      type: DataTypes.DATEONLY,
+      allowNull: false
     }
   }, {
     sequelize,

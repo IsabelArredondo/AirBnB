@@ -4,18 +4,20 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Images', [
       {
-         
+         userId: 1,
          spotId: 2,
          reviewId: 2,
-         place: 'spot',
+         imageableId: 2,
+         imageableType: 'spot',
          url: 'https://www.forbes.com/advisor/home-improvement/types-of-house-styles/',
       },
 
       {
-        
+        userId: 1,
         spotId: 1,
         reviewId: 1,
-        place: 'review',
+        imageableId: 1,
+        imageableType: 'review',
         url: 'https://www.dezeen.com/2014/08/12/house-k-indoor-gardens-tokyo-k2yt/',
      },
 
@@ -23,7 +25,8 @@ module.exports = {
       
       spotId: 2,
       reviewId: 3,
-      place: 'review',
+      imageableId: 2,
+      imageableType: 'review',
       url: 'https://www.mydomaine.com/white-interior-decorating-ideas-4767847',
      },
 

@@ -4,6 +4,8 @@ const sessionRouter = require('./session.js');
 const spotsRouter = require('./spots.js');
 const usersRouter = require('./users.js');
 const reviewsRouter = require('./reviews');
+const bookingRouter = require('./booking');
+const imagesRouter = require('./images');
 const { restoreUser } = require("../../utils/auth.js");
 
 // Connect restoreUser middleware to the API router
@@ -15,6 +17,8 @@ router.use('/session', sessionRouter);
 router.use('/spots', spotsRouter)
 router.use('/users', usersRouter);
 router.use('/reviews', reviewsRouter);
+router.use('/booking', bookingRouter);
+router.use('/images', imagesRouter);
 //do this every time you create a new folder
 
 router.post('/test', (req, res) => {

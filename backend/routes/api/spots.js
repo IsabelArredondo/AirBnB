@@ -1,4 +1,3 @@
-
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { Spot, Image, User, Review, sequelize } = require('../../db/models');

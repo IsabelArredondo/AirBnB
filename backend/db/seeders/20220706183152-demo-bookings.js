@@ -13,7 +13,7 @@ module.exports = {
         userId: '2',
         spotId: '2',
         startDate: '2020-02-10',
-        endDate: '2020-02-20',
+        endDate: '2020-02-15',
        }
       ], {});
   },
