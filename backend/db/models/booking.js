@@ -17,6 +17,10 @@ module.exports = (sequelize, DataTypes) => {
       Booking.belongsTo(models.Spot, {
         foreignKey: 'spotId'
       })
+
+      Booking.hasMany(models.Image, {
+        foreignKey: 'spotId', as: 'previewImage', onDelete: 'CASCADE', hooks: true
+      })
       
     }
   }

@@ -55,8 +55,7 @@ spotData.numReviews = reviewsAggData.numReviews
 spotData.avgStarRating = reviewsAggData.avgStarRating
 
 if (!spots) {
-  res.status(404)
-  res.json({message: "Spot couldn't be found", statusCode: 404})
+  return res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
 }
 
   res.json(spotData)
@@ -143,12 +142,18 @@ router.put('/:ownerId', validateSpots, requireAuth, async (req, res) => {
 // both equal 1
 //console.log(req.params.ownerId)
 
-  if (!spots || spots.ownerId !== req.user.id) {
+  if (!spots) {
     res.status(404)
-    res.json({
+    return res.json({
       message: "Spot couldn't be found", 
       statusCode: 404
     })
+  } else if (spots.ownerId !== req.user.id) {
+    res.status(403)
+    return res.json({
+      message: "Forbidden",
+      statusCode: 403
+   })
   }
   
   spots.address = address
@@ -172,12 +177,18 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
   const spots = await Spot.findByPk(req.params.id);
 
-  if (!spots || spots.ownerId !== req.user.id) {
+  if (!spots) {
     res.status(404)
-    res.json({
+    return res.json({
       message: "Spot couldn't be found", 
       statusCode: 404
     })
+  } else if (spots.ownerId !== req.user.id) {
+    res.status(403)
+    return res.json({
+      message: "Forbidden",
+      statusCode: 403
+   }) 
   }
 
   spots.destroy()

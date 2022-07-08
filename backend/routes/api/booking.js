@@ -18,6 +18,11 @@ router.get('/userBookings', requireAuth, async (req, res) => {
                 model: Spot,
                 attributes: ['id', 'ownerId', 'address', 'city', 'state', 'country', 'lat', 'lng', 'name', 'price']
             },
+            {
+              model: Image,
+              as: 'previewImage',
+              attributes: ['url']
+            }
         ],
 
         where: { userId: id }
@@ -25,8 +30,7 @@ router.get('/userBookings', requireAuth, async (req, res) => {
     res.json({ Bookings })
 });
 
-
-//Get all Reviews by a Spot's id
+//Get all Bookings for a Spot based on the Spot's id
 router.get('/:spotId', requireAuth, async (req, res) => {
 
     let nonUserBookings = await Booking.findAll({

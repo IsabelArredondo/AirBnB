@@ -47,8 +47,8 @@ router.get('/:spotId', async (req, res) => {
 
   if (!spot) {
     return res.status(404).json({
-      "message": "Spot does not exist!",
-      "statusCode": 404
+      message: "Spot does not exist!",
+      statusCode: 404
     });
   }
 
@@ -86,20 +86,40 @@ const validateSpots = [
 ]
 
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId', validateSpots, requireAuth, async (req, res) => {
-
-  const spotId = req.params.spotId;
-
-  let spot  = await Spot.findByPk(spotId);
-
+router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
+  let { review, stars } = req.body
+  const spotId = req.params.spotId
+  const id = req.user.id
+  const spot = await Spot.findOne({
+      where: { id: spotId}
+  })
   if (!spot) {
-    return res.status(404).json({
-      "message": "Spot does not exist!",
-      "statusCode": 404
-    });
+      return res.status(404).json({
+          message: "Spot couldn't be found",
+          statusCode: 404
+      })
   }
 
-  let { review, stars } = req.body
+  const user = await Review.findOne({
+      where:{ userId: id, spotId: spotId}
+  })
+  if (user) {
+      return res.status(403).json({
+          message: "User already has a review for this spot",
+          statusCode: 403
+      })
+  }
+
+  if (stars > 5 || stars <= 0) {
+      return res.status(400).json({
+          "message": "Validation error",
+          "statusCode": 400,
+          "errors": {
+              "stars": "Stars must be an integer from 1 to 5"
+          }
+      })
+  }
+
   const newReview = await Review.create({
     userId: req.user.id,
     spotId: spotId,
@@ -107,32 +127,40 @@ router.post('/:spotId', validateSpots, requireAuth, async (req, res) => {
     stars,
   })
 
-  res.json({ message: 'Successfully created spot', newReview })
+
+  res.json({ message: 'Successfully created spot', newReview})
 })
 
 
 //Update and return an existing review.
-router.put('/:id', requireAuth, async (req, res) => {
+router.put('/:id', requireAuth, validateSpots, async (req, res) => {
 
   const { review, stars } = req.body
-  const reviews = await Review.findOne(
-
-    {
-      where: {
-       id: req.params.id
-      }
-    }
-  );
+  const reviews = await Review.findOne({ where: { id: req.params.id}});
   // both equal 1
   //console.log(req.params.ownerId)
 
-  if (!reviews || reviews.userId !== req.user.id) {
-    res.status(404)
-    res.json({
+  if (!reviews ) {
+    return res.status(404).json({
       message: "Review couldn't be found",
       statusCode: 404
     })
+  } 
+  if (reviews.userId !== req.user.id) {
+     return res.status(403).json({
+      message: "Forbidden",
+      statusCode: 403
+   }) 
   }
+  if (stars > 5 || stars <= 0) {
+    return res.status(400).json({
+        message: "Validation error",
+        statusCode: 400,
+        errors: {
+            stars: "Stars must be an integer from 1 to 5"
+        }
+    })
+}
 
   reviews.review = review
   reviews.stars = stars
@@ -146,12 +174,17 @@ router.delete('/:id', requireAuth, async (req, res) => {
 
   const reviews = await Review.findByPk(req.params.id);
 
-  if (!reviews || reviews.userId !== req.user.id) {
-    res.status(404)
-    res.json({
+  if (!reviews) {
+     return res.status(404).json({
       message: "Review couldn't be found",
       statusCode: 404
     })
+  }
+  if (reviews.userId !== req.user.id) {
+     return res.status(403).json({
+      message: "Forbidden",
+      statusCode: 403
+   }) 
   }
 
   reviews.destroy()
