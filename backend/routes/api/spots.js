@@ -2,61 +2,132 @@ const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { Spot, Image, User, Review, sequelize } = require('../../db/models');
 const { check } = require('express-validator');
+const { Op } = require('sequelize');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
 const router = express.Router();
 
 
-
-// find allSpots 
 router.get('/', async (req, res) => {
-  const spots = await Spot.findAll({
+
+  let { page, size, maxLat, minLat, minLng, maxLng, maxPrice, minPrice } = req.query;
+  page = Number(page)
+  size = Number(size)
+
+  if (isNaN(page)) {
+    page = 0
+  }
+  if (isNaN(size)) {
+    size = 20
+  }
+
+  if (size > 20) {
+    size = 20
+  }
+  if (page > 10) {
+    page = 10
+  }
+  const error = {
+    "message": "Validation Error",
+    "statusCode": 400,
+    "errors": {}
+  }
+
+
+  if (page < 0) {
+    error.errors.page = "Page must be greater than or equal to 0"
+  }
+  if (size < 0) {
+    error.errors.size = "Size must be greater than or equal to 0"
+  }
+  if (+maxLat > 90) {
+    error.errors.maxLat = "Maximum latitude is invalid"
+  }
+  if (+minLat < -90) {
+    error.errors.minLat = "Minimum latitude is invalid"
+  }
+  if (+minLng < -180) {
+    error.errors.minLng = "Maximum longitude is invalid"
+  }
+  if (+maxLng > 180) {
+    error.errors.maxLng = "Minimum longitude is invalid"
+  }
+  if (Number(minPrice) < 0) {
+    error.errors.minPrice = "Minimum price must be greater than 0"
+  }
+  if (Number(maxPrice) < 0) {
+    error.errors.maxPrice = "Maximum price must be greater than 0"
+  }
+
+  if (page < 0 || size < 0 || +maxLat > 90 || +minLng < -180 || +maxLng > 180 || Number(maxPrice) < 0 || Number(minPrice) < 0) {
+    return res.status(400).json(error)
+  }
+  const options = []
+  if (maxLat) { options.push({ lat: { [Op.lte]: Number(maxLat) } }) }
+  if (minLat) { options.push({ lat: { [Op.gte]: Number(minLat) } }) }
+  if (maxLng) { options.push({ lng: { [Op.lte]: Number(maxLng) } }) }
+  if (minLng) { options.push({ lng: { [Op.gte]: Number(minLng) } }) }
+  if (maxPrice) { options.push({ price: { [Op.lte]: Number(maxPrice) } }) }
+  if (minPrice) { options.push({ price: { [Op.gte]: Number(minPrice) } }) }
+
+  let spot = await Spot.findAll({
+    where: {
+      [Op.and]: options
+
+    },
     include: {
       model: Image,
       as: 'previewImage',
       attributes: ['url']
-    }
+    },
+    limit: size || 20,
+    offset: page * size,
+  });
+  return res.json({
+    spot,
+    page,
+    size: size || 20
   });
 
-  res.json(spots);
 })
+
 
 //find all spots by id 
 router.get('/:id(\\d+)', async (req, res) => {
   const spots = await Spot.findByPk(req.params.id, {
     include: [
-        {
-          model: Image,
-          as: 'images',
-          attributes: ['url']
-        },
-        {
-          model: User,
-          as: 'Owner',
-          attributes: ['id', 'firstName', 'lastName']
+      {
+        model: Image,
+        as: 'images',
+        attributes: ['url']
+      },
+      {
+        model: User,
+        as: 'Owner',
+        attributes: ['id', 'firstName', 'lastName']
       }]
   });
 
   const reviewsAggData = await Spot.findByPk(req.params.id, {
     include: {
-        model: Review,
-        attributes: []
+      model: Review,
+      attributes: []
     },
     attributes: [
-        [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
-        [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
-      ],
+      [sequelize.fn('COUNT', sequelize.col('*')), 'numReviews'],
+      [sequelize.fn('AVG', sequelize.col('stars')), 'avgStarRating']
+    ],
     raw: true
-});
+  });
 
-const spotData = spots.toJSON()
-spotData.numReviews = reviewsAggData.numReviews
-spotData.avgStarRating = reviewsAggData.avgStarRating
+  const spotData = spots.toJSON()
+  spotData.numReviews = reviewsAggData.numReviews
+  spotData.avgStarRating = reviewsAggData.avgStarRating
 
-if (!spots) {
-  return res.status(404).json({message: "Spot couldn't be found", statusCode: 404})
-}
+  if (!spots) {
+    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+  }
 
   res.json(spotData)
 })
@@ -139,13 +210,13 @@ router.put('/:ownerId', validateSpots, requireAuth, async (req, res) => {
       }
     }
   );
-// both equal 1
-//console.log(req.params.ownerId)
+  // both equal 1
+  //console.log(req.params.ownerId)
 
   if (!spots) {
     res.status(404)
     return res.json({
-      message: "Spot couldn't be found", 
+      message: "Spot couldn't be found",
       statusCode: 404
     })
   } else if (spots.ownerId !== req.user.id) {
@@ -153,9 +224,9 @@ router.put('/:ownerId', validateSpots, requireAuth, async (req, res) => {
     return res.json({
       message: "Forbidden",
       statusCode: 403
-   })
+    })
   }
-  
+
   spots.address = address
   spots.city = city
   spots.state = state
@@ -180,7 +251,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
   if (!spots) {
     res.status(404)
     return res.json({
-      message: "Spot couldn't be found", 
+      message: "Spot couldn't be found",
       statusCode: 404
     })
   } else if (spots.ownerId !== req.user.id) {
@@ -188,7 +259,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
     return res.json({
       message: "Forbidden",
       statusCode: 403
-   }) 
+    })
   }
 
   spots.destroy()
@@ -198,7 +269,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
     message: "Successfully deleted",
     statusCode: 200
   })
-  
+
 })
 
 
