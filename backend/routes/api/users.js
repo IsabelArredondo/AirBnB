@@ -38,8 +38,7 @@ router.post(
       })
 
       if (trackEmail) {
-        res.status(403);
-        res.json({
+        return res.status(403).json({
           message: "User already exists!",
           statusCode: 403,
           errors: {
@@ -54,7 +53,10 @@ router.post(
       const token = await setTokenCookie(res, user)
 
       return res.json({
-        user,
+        
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
         token
       });
     }
