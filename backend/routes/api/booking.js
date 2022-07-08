@@ -11,7 +11,7 @@ const router = express.Router();
 // Get all of the Current User's Bookings
 router.get('/userBookings', requireAuth, async (req, res) => {
     const { id } = req.user
-    console.log(id)
+    
     const Bookings = await Booking.findAll({
 
         include: [
@@ -164,7 +164,6 @@ router.post('/:spotId', requireAuth, async (req, res) => {
         statusCode: 403
       });
     }
-    console.log("DATE DATE",new Date(bookings.endDate))
     if (new Date(bookings.endDate) < new Date() ) {
       return res.status(400).json({
         "message": "Past bookings can't be modified",
@@ -229,8 +228,8 @@ router.delete('/:id', requireAuth, async (req, res) => {
   }
 
   if (new Date(current.startDate) < Date.now()) {
-    return res.status(400).json({
-          "message": "Bookings that have been started can't be deleted",
+    return res.status(40).json({
+          "message": "You cannot delete a past or current booking",
           "statusCode": 400
       });
   }

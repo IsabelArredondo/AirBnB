@@ -90,7 +90,6 @@ router.post('/review/:reviewId', requireAuth, async (req, res) => {
 router.delete('/delete/:id', requireAuth, async (req, res) => {
 
   const images = await Image.findByPk(req.params.id);
-    console.log(images)
 
   if (!images ) {
     res.status(404)
