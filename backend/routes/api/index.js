@@ -6,6 +6,7 @@ const usersRouter = require('./users.js');
 const reviewsRouter = require('./reviews');
 const bookingRouter = require('./booking');
 const imagesRouter = require('./images');
+const queryRouter = require('./query');
 const { restoreUser } = require("../../utils/auth.js");
 
 // Connect restoreUser middleware to the API router
@@ -19,6 +20,7 @@ router.use('/users', usersRouter);
 router.use('/reviews', reviewsRouter);
 router.use('/booking', bookingRouter);
 router.use('/images', imagesRouter);
+router.use('/query', queryRouter);
 //do this every time you create a new folder
 
 router.post('/test', (req, res) => {
