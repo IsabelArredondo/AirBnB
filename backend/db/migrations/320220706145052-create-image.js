@@ -15,7 +15,7 @@ module.exports = {
 
         },
       },
-      UserId: {
+      userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
