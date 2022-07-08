@@ -149,10 +149,10 @@ user's information.
 
     ```json
     {
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john.smith@gmail.com",
-      "password": "secret password"
+      "firstName": "App",
+      "lastName": "Academey",
+      "email": "AppAcademy@gmail.com",
+      "password": "123456"
     }
     ```
 
@@ -164,10 +164,10 @@ user's information.
 
     ```json
     {
-      "id": 1,
-      "firstName": "John",
-      "lastName": "Smith",
-      "email": "john.smith@gmail.com",
+      "firstName": "App",
+      "lastName": "Academey",
+      "email": "AppAcademy@gmail.com",
+      "password": "123456",
       "token": ""
     }
     ```
@@ -327,7 +327,7 @@ Returns the details of a spot specified by its id.
       }
     }
     ```
-
+--CHECK ERROR
 * Error response: Couldn't find a Spot with the specified id
   * Status Code: 404
   * Headers:
@@ -355,7 +355,7 @@ Creates and returns a new spot.
 
     ```json
     {
-      "address": "123 Disney Lane",
+      "address": "123 Disneys Lanes",
       "city": "San Francisco",
       "state": "California",
       "country": "United States of America",
@@ -438,7 +438,7 @@ Updates and returns an existing spot.
       "lng": -122.4730327,
       "name": "App Academy",
       "description": "Place where web developers are created",
-      "price": 123
+      "price": 125
     }
     ```
 
@@ -547,7 +547,7 @@ Returns all the reviews written by the current user.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /reviews/
+  * URL: /reviews/userReviews
   * Body: none
 
 * Successful Response
@@ -652,7 +652,7 @@ Create and return a new review for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: post
-  * URL: /spots/:spotid/reviews
+  * URL: /reviews/:spotId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -837,7 +837,7 @@ Return all the bookings that the current user has made.
 * Require Authentication: true
 * Request
   * Method: get 
-  * URL: /bookings/
+  * URL: /booking/userBookings
   * Body: none
 
 * Successful Response
@@ -882,7 +882,7 @@ Return all the bookings for a spot specified by id.
 * Require Authentication: true
 * Request
   * Method: get
-  * URL: /spots/:spotid/bookings
+  * URL: /booking/:spotId
   * Body: none
 
 * Successful Response: If you ARE NOT the owner of the spot.
@@ -951,7 +951,7 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: post
-  * URL: /spot/:spotid/bookings
+  * URL: /:spotid
   * Body: none
 
 * Successful Response
@@ -1142,7 +1142,7 @@ Create and return a new image for a spot specified by id.
 * Require proper authorization: Spot must belong to the current user
 * Request
   * Method: post 
-  * URL: /spots/:id
+  * URL: /images/spots/:spotId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1189,7 +1189,7 @@ Create and return a new image for a review specified by id.
 * Require proper authorization: Review must belong to the current user
 * Request
   * Method: post
-  * URL: /reviews/:id/images
+  * URL: /images/review/:reviewId
   * Headers:
     * Content-Type: application/json
   * Body:
@@ -1287,16 +1287,16 @@ Return spots filtered by query parameters.
 * Require Authentication: false
 * Request
   * Method: get 
-  * URL: /spots/
+  * URL: /spots?page=0&size=25
   * Query Parameters
     * page: integer, minimum: 0, maximum: 10, default: 0
     * size: integer, minimum: 0, maximum: 20, default: 20
-    * minLat: decimal, optional
-    * maxLat: decimal, optional
-    * minLng: decimal, optional
-    * maxLng: decimal, optional
-    * minPrice: decimal, optional, minimum: 0
-    * maxPrice: decimal, optional, minimum: 0
+    *  minLat: decimal, optional
+    *  maxLat: decimal, optional
+    *  minLng: decimal, optional
+    *  maxLng: decimal, optional
+    *  minPrice: decimal, optional, minimum: 0
+    *  maxPrice: decimal, optional, minimum: 0
   * Body: none
 
 * Successful Response
@@ -1325,8 +1325,8 @@ Return spots filtered by query parameters.
           "previewImage": "image url"
         }
       ],
-      "page": 2,
-      "size": 25
+      "page": 0,
+      "size": 20
     }
     ```
 
