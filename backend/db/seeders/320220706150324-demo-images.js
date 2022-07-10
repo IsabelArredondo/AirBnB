@@ -13,7 +13,7 @@ module.exports = {
       },
 
       {
-        userId: 2,
+        userId: 1,
         spotId: 1,
         reviewId: 1,
         imageableId: 1,

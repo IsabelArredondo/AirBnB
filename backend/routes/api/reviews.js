@@ -4,6 +4,8 @@ const { requireAuth } = require('../../utils/auth');
 const { Review, Image, Spot, User } = require('../../db/models');
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
+const { Op } = require('sequelize');
+
 
 const router = express.Router();
 
@@ -89,9 +91,11 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
   const spotId = req.params.spotId
   const id = req.user.id
+
   const spot = await Spot.findOne({
       where: { id: spotId}
   })
+
   if (!spot) {
       return res.status(404).json({
           message: "Spot couldn't be found",
@@ -99,14 +103,21 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
       })
   }
 
-  const user = await Review.findOne({
-      where:{ userId: id, spotId: spotId}
+ 
+  const reviewExistence = await Review.findAll({
+    where: {
+      [Op.and]: [
+        { spotId: req.params.spotId },
+        { userId: req.user.id },
+      ],
+    },
   })
-  if (user) {
-      return res.status(403).json({
-          message: "User already has a review for this spot",
-          statusCode: 403
-      })
+
+  if (reviewExistence.length >= 1) {
+    return res.status(403).json({
+      message: "User review for this current spot already exists",
+      statusCode: 403
+    })
   }
 
   if (stars > 5 || stars <= 0) {
@@ -120,14 +131,14 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   }
 
   const newReview = await Review.create({
-    userId: req.user.id,
+    userId: id,
     spotId: spotId,
     review,
     stars,
   })
 
 
-  res.json({ message: 'Successfully created spot', newReview})
+  res.json({ newReview })
 })
 
 
