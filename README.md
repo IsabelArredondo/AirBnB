@@ -327,7 +327,7 @@ Returns the details of a spot specified by its id.
       }
     }
     ```
---CHECK ERROR
+
 * Error response: Couldn't find a Spot with the specified id
   * Status Code: 404
   * Headers:
@@ -355,15 +355,15 @@ Creates and returns a new spot.
 
     ```json
     {
-      "address": "123 Disneys Lanes",
+      "address": "123 App Academy ln",
       "city": "San Francisco",
       "state": "California",
       "country": "United States of America",
-      "lat": 37.7645358,
-      "lng": -122.4730327,
+      "lat": 38.7645358,
+      "lng": -124.4730327,
       "name": "App Academy",
       "description": "Place where web developers are created",
-      "price": 123
+      "price": 100
     }
     ```
 
@@ -375,7 +375,7 @@ Creates and returns a new spot.
 
     ```json
     {
-      "id": 1,
+      "id": 3,
       "ownerId": 1,
       "address": "123 Disney Lane",
       "city": "San Francisco",

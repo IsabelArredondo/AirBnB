@@ -108,7 +108,7 @@ router.get('/:id(\\d+)', async (req, res) => {
         attributes: ['id', 'firstName', 'lastName']
       }]
   });
-  
+
   if (!spots) {
     return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
   }
@@ -198,7 +198,18 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
     price
   })
 
-  res.json({ message: 'Successfully created spot', newSpot })
+  res.json({   
+    ownerId: req.user.id,
+    address: newSpot.address,
+    city: newSpot.city,
+    state: newSpot.state,
+    country: newSpot.country,
+    lat: newSpot.lat,
+    lng: newSpot.lng,
+    name: newSpot.name,
+    description: newSpot.description,
+    price: newSpot.price
+  })
 })
 
 //put spot 
