@@ -102,8 +102,6 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
           statusCode: 404
       })
   }
-
- 
   const reviewExistence = await Review.findAll({
     where: {
       [Op.and]: [
@@ -112,7 +110,6 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
       ],
     },
   })
-
   if (reviewExistence.length >= 1) {
     return res.status(403).json({
       message: "User review for this current spot already exists",
