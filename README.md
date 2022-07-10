@@ -430,15 +430,15 @@ Updates and returns an existing spot.
 
     ```json
     {
-      "address": "123 Disney Lane",
+      "address": "123 Something New Lane",
       "city": "San Francisco",
       "state": "California",
       "country": "United States of America",
-      "lat": 37.7645358,
-      "lng": -122.4730327,
-      "name": "App Academy",
-      "description": "Place where web developers are created",
-      "price": 125
+      "lat": 40.7645358,
+      "lng": -100.4730327,
+      "name": "New Name",
+      "description": "Place where spots are updated",
+      "price": 100
     }
     ```
 
