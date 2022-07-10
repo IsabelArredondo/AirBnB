@@ -118,7 +118,14 @@ router.post('/:spotId', requireAuth, async (req, res) => {
     })
   }
 
-  if (stars > 5 || stars <= 0) {
+  const newReview = await Review.create({
+    userId: id,
+    spotId: spotId,
+    review,
+    stars,
+  })
+
+  if (newReview.stars > 5 || newReview.stars <= 0) {
     errors.stars =  "Stars must be an integer from 1 to 5"
       return res.status(400).json({
           message: "Validation error",
@@ -127,7 +134,7 @@ router.post('/:spotId', requireAuth, async (req, res) => {
       })
   }
 
-  if(!review) {
+  if(!newReview.review) {
     errors.review =  "Review text is required"
       return res.status(400).json({
           message: "Validation error",
@@ -135,13 +142,6 @@ router.post('/:spotId', requireAuth, async (req, res) => {
           errors
       })
   }
-
-  const newReview = await Review.create({
-    userId: id,
-    spotId: spotId,
-    review,
-    stars,
-  })
 
 
   res.json(newReview)
