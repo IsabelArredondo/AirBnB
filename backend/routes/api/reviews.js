@@ -87,12 +87,12 @@ const validateSpots = [
 ]
 
 const errors = {}
+
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
+router.post('/:spotId', requireAuth, async (req, res) => {
   let { review, stars } = req.body
   const spotId = req.params.spotId
   const id = req.user.id
-
   const spot = await Spot.findOne({
       where: { id: spotId}
   })
