@@ -108,6 +108,10 @@ router.get('/:id(\\d+)', async (req, res) => {
         attributes: ['id', 'firstName', 'lastName']
       }]
   });
+  
+  if (!spots) {
+    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
+  }
 
   const reviewsAggData = await Spot.findByPk(req.params.id, {
     include: {
@@ -125,9 +129,7 @@ router.get('/:id(\\d+)', async (req, res) => {
   spotData.numReviews = reviewsAggData.numReviews
   spotData.avgStarRating = reviewsAggData.avgStarRating
 
-  if (!spots) {
-    return res.status(404).json({ message: "Spot couldn't be found", statusCode: 404 })
-  }
+ 
 
   res.json(spotData)
 })
