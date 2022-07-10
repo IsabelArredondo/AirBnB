@@ -135,7 +135,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   })
 
 
-  res.json({ newReview })
+  res.json(newReview)
 })
 
 
