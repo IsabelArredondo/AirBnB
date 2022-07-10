@@ -86,6 +86,7 @@ const validateSpots = [
     handleValidationErrors
 ]
 
+const errors = {}
 //Create a Review for a Spot based on the Spot's id
 router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
@@ -118,12 +119,20 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   }
 
   if (stars > 5 || stars <= 0) {
+    errors.stars =  "Stars must be an integer from 1 to 5"
       return res.status(400).json({
-          "message": "Validation error",
-          "statusCode": 400,
-          "errors": {
-              "stars": "Stars must be an integer from 1 to 5"
-          }
+          message: "Validation error",
+          statusCode: 400,
+          errors
+      })
+  }
+
+  if(!review) {
+    errors.review =  "Review text is required"
+      return res.status(400).json({
+          message: "Validation error",
+          statusCode: 400,
+          errors
       })
   }
 
