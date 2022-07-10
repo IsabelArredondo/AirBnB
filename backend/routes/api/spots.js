@@ -208,7 +208,9 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
     lng: newSpot.lng,
     name: newSpot.name,
     description: newSpot.description,
-    price: newSpot.price
+    price: newSpot.price,
+    createdAt: newSpot.createdAt,
+    updatedAt: newSpot.updatedAt
   })
 })
 
