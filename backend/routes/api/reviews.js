@@ -127,13 +127,12 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   })
 
   if (stars > 5 || stars <= 0) {
-    errors.stars =  "Stars must be an integer from 1 to 5"
       return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          errors: {
+        message: "Validation error",
+        statusCode: 400,
+        errors: {
             stars: "Stars must be an integer from 1 to 5"
-          }
+        }
       })
   }
 
