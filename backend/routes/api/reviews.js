@@ -81,15 +81,16 @@ const validateSpots = [
   .withMessage('Review text is required'),
   check('stars')
     .exists({ checkFalsy: true })
-    .isLength({len:[1,5]})
+    .isLength({max:5})
+    .isLength({min:0})
     .withMessage('Stars must be an integer from 1 to 5'),
     handleValidationErrors
 ]
 
-const errors = {}
+//const errors = {}
 
 //Create a Review for a Spot based on the Spot's id
-router.post('/:spotId', requireAuth, async (req, res) => {
+router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
   const spotId = req.params.spotId
   const id = req.user.id
@@ -125,23 +126,23 @@ router.post('/:spotId', requireAuth, async (req, res) => {
     stars,
   })
 
-  if (newReview.stars > 5 || newReview.stars <= 0) {
-    errors.stars =  "Stars must be an integer from 1 to 5"
-      return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          errors
-      })
-  }
+  // if (newReview.stars > 5 || newReview.stars <= 0) {
+  //   errors.stars =  "Stars must be an integer from 1 to 5"
+  //     return res.status(400).json({
+  //         message: "Validation error",
+  //         statusCode: 400,
+  //         errors
+  //     })
+  // }
 
-  if(!newReview.review) {
-    errors.review =  "Review text is required"
-      return res.status(400).json({
-          message: "Validation error",
-          statusCode: 400,
-          errors
-      })
-  }
+  // if(!review) {
+  //   errors.review =  "Review text is required"
+  //     return res.status(400).json({
+  //         message: "Validation error",
+  //         statusCode: 400,
+  //         errors
+  //     })
+  // }
 
 
   res.json(newReview)
