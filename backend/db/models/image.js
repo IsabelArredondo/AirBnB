@@ -25,6 +25,12 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Image.init({
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true
+    },
     reviewId: {
       type: DataTypes.INTEGER,
 
