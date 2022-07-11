@@ -34,7 +34,6 @@ router.get('/', async (req, res) => {
     "errors": {}
   }
 
-
   if (page < 0) {
     error.errors.page = "Page must be greater than or equal to 0"
   }
