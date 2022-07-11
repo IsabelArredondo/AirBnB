@@ -142,7 +142,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
 
 
 //Update and return an existing review.
-router.put('/:id', requireAuth, validateSpots, async (req, res) => {
+router.put('/:id', requireAuth,  async (req, res) => {
 
   const { review, stars } = req.body
   const reviews = await Review.findOne({ where: { id: req.params.id}});
