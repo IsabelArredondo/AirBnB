@@ -162,7 +162,8 @@ router.put('/:id', requireAuth, validateSpots, async (req, res) => {
    }) 
   }
 
-  if (review.stars > 5 || review.stars <= 0) {
+  if (stars > 5 || stars <= 0) {
+
     return res.status(400).json({
       message: "Validation error",
       statusCode: 400,
