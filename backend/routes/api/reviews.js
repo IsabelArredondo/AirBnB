@@ -139,6 +139,11 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   res.json(newReview)
 })
 
+const error = {
+  "message": "Validation Error",
+  "statusCode": 400,
+  "errors": {}
+}
 
 //Update and return an existing review.
 router.put('/:id', requireAuth, validateSpots, async (req, res) => {
@@ -160,14 +165,9 @@ router.put('/:id', requireAuth, validateSpots, async (req, res) => {
       statusCode: 403
    }) 
   }
+  
   if (stars > 5 || stars <= 0) {
-    return res.status(400).json({
-        message: "Validation error",
-        statusCode: 400,
-        errors: {
-            stars: "Stars must be an integer from 1 to 5"
-        }
-    })
+    return error.errors.stars = "Stars must be an integer from 1 to 5"
 }
 
   reviews.review = review
