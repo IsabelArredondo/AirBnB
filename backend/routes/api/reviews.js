@@ -142,14 +142,8 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
 
 
 //Update and return an existing review.
-router.put('/:id', requireAuth, async (req, res) => {
+router.put('/:id', requireAuth, validateSpots, async (req, res) => {
 
-  const error = {
-    "message": "Validation Error",
-    "statusCode": 400,
-    "errors": {}
-  }
-  
   const { review, stars } = req.body
   const reviews = await Review.findOne({ where: { id: req.params.id}});
   // both equal 1
@@ -169,8 +163,13 @@ router.put('/:id', requireAuth, async (req, res) => {
   }
 
   if (review.stars > 5 || review.stars <= 0) {
-     error.errors.stars = "Stars must be an integer from 1 to 5"
-     return res.status(400).json(error)
+    return res.status(400).json({
+      message: "Validation error",
+      statusCode: 400,
+      errors: {
+          stars: "Stars must be an integer from 1 to 5"
+      }
+    })
 }
 
   reviews.review = review
