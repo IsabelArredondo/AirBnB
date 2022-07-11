@@ -2,8 +2,8 @@
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { Review, Image, Spot, User } = require('../../db/models');
-//const { check } = require('express-validator');
-//const { handleValidationErrors } = require('../../utils/validation');
+const { check } = require('express-validator');
+const { handleValidationErrors } = require('../../utils/validation');
 const { Op } = require('sequelize');
 
 
@@ -75,17 +75,17 @@ router.get('/:spotId', async (req, res) => {
   return res.json(reviews);
 });
 
-// const validateSpots = [
-//   check('review')
-//   .exists({ checkFalsy: true })
-//   .withMessage('Review text is required'),
-//   check('stars')
-//     .exists({ checkFalsy: true })
-//     .isLength({max:5})
-//     .isLength({min:0})
-//     .withMessage('Stars must be an integer from 1 to 5'),
-//     handleValidationErrors
-// ]
+const validateSpots = [
+  check('review')
+  .exists({ checkFalsy: true })
+  .withMessage('Review text is required'),
+  // check('stars')
+  //   .exists({ checkFalsy: true })
+  //   .isLength({max:5})
+  //   .isLength({min:0})
+  //   .withMessage('Stars must be an integer from 1 to 5'),
+     handleValidationErrors
+]
 
 //Create a Review for a Spot based on the Spot's id
 router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
