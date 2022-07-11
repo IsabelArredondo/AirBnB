@@ -659,8 +659,8 @@ Create and return a new review for a spot specified by id.
 
     ```json
     {
-      "review": "This was an awesome spot!",
-      "stars": 5,
+      "review": "This is a new review!",
+      "stars": 5
     }
     ```
 
@@ -675,7 +675,7 @@ Create and return a new review for a spot specified by id.
       "id": 1,
       "userId": 1,
       "spotId": 1,
-      "review": "This was an awesome spot!",
+      "review": "This is a new review!",
       "stars": 5,
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36" 
@@ -740,8 +740,8 @@ Update and return an existing review.
 
     ```json
     {
-      "review": "This was an awesome spot!",
-      "stars": 5,
+      "review": "This is an updated review!",
+      "stars": 5
     }
     ```
 
@@ -951,9 +951,15 @@ Create and return a new booking from a spot specified by id.
 * Require proper authorization: Spot must NOT belong to the current user
 * Request
   * Method: post
-  * URL: /:spotid
-  * Body: none
+  * URL: /booking/:spotid
+  * Body: 
+```json
 
+   { "startDate": "2022-11-19",
+      "endDate": "2022-11-19"
+      }
+
+ ```
 * Successful Response
   * Status Code: 200
   * Headers:
@@ -965,8 +971,8 @@ Create and return a new booking from a spot specified by id.
       "id": 1,
       "spotId": 1,
       "userId": 2,
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-19",
+      "startDate": "2022-11-19",
+      "endDate": "2022-11-19",
       "createdAt": "2021-11-19 20:39:36",
       "updatedAt": "2021-11-19 20:39:36"
     }
@@ -1010,15 +1016,15 @@ Update and return an existing booking.
 * Require proper authorization: Booking must belong to the current user
 * Request
   * Method: put 
-  * URL: /bookings/:id
+  * URL: /booking/:id
   * Headers:
     * Content-Type: application/json
   * Body:
 
     ```json
     {
-      "startDate": "2021-11-19",
-      "endDate": "2021-11-19"
+      "startDate": "2023-12-19",
+      "endDate": "2023-12-20"
     }
     ```
 
@@ -1092,7 +1098,7 @@ Delete an existing booking.
   Spot must belong to the current user
 * Request
   * Method: delete 
-  * URL: /bookings/:id
+  * URL: /booking/:id
   * Body: none
 
 * Successful Response
@@ -1161,7 +1167,7 @@ Create and return a new image for a spot specified by id.
 
     ```json
     {
-      "id": 1,
+      "id": 3,
       "imageableId": 1,
       "imageableType": "Spot",
       "url": "image url",
@@ -1251,7 +1257,7 @@ Delete an existing image.
   the image's imageableId and imageableType
 * Request
   * Method: delete
-  * URL: user/images/:id
+  * URL: /images/delete/:id
   * Body: none
 
 * Successful Response
