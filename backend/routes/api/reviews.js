@@ -79,11 +79,11 @@ const validateSpots = [
   check('review')
   .exists({ checkFalsy: true })
   .withMessage('Review text is required'),
-  // check('stars')
-  //   .exists({ checkFalsy: true })
-  //   .isLength({max:5})
-  //   .isLength({min:0})
-  //   .withMessage('Stars must be an integer from 1 to 5'),
+  check('stars')
+    .exists({ checkFalsy: true })
+    .isLength({max:5})
+    .isLength({min:0})
+    .withMessage('Stars must be an integer from 1 to 5'),
      handleValidationErrors
 ]
 
@@ -139,15 +139,17 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   res.json(newReview)
 })
 
-const error = {
-  "message": "Validation Error",
-  "statusCode": 400,
-  "errors": {}
-}
+
 
 //Update and return an existing review.
 router.put('/:id', requireAuth, async (req, res) => {
 
+  const error = {
+    "message": "Validation Error",
+    "statusCode": 400,
+    "errors": {}
+  }
+  
   const { review, stars } = req.body
   const reviews = await Review.findOne({ where: { id: req.params.id}});
   // both equal 1
