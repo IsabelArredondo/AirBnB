@@ -76,16 +76,17 @@ router.post('/:spotId', requireAuth, async (req, res) => {
 
   if (!spot) {
    return res.status(404).json({
-      "message": "Spot couldn't be found!"
+      "message": "Spot couldn't be found!",
+      "statusCode": "404"
     });
   }
 
-  if (req.user.id !== spot.ownerId) {
-    return res.status(403).json({
-      "message": "Forbidden",
-      "statusCode": 403
-    });
-  }
+  // if (req.user.id !== spot.ownerId) {
+  //   return res.status(403).json({
+  //     "message": "Forbidden",
+  //     "statusCode": 403
+  //   });
+  // }
 
   if (endDate < startDate) {
     return res.status(400).json({
@@ -228,7 +229,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
   }
 
   if (new Date(current.startDate) < Date.now()) {
-    return res.status(40).json({
+    return res.status(400).json({
           "message": "You cannot delete a past or current booking",
           "statusCode": 400
       });

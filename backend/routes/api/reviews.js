@@ -87,8 +87,6 @@ const validateSpots = [
     handleValidationErrors
 ]
 
-//const errors = {}
-
 //Create a Review for a Spot based on the Spot's id
 router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
@@ -112,7 +110,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
       ],
     },
   })
-  
+
   if (reviewExistence.length >= 1) {
     return res.status(403).json({
       message: "User review for this current spot already exists",
