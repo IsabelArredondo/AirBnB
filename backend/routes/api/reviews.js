@@ -165,8 +165,8 @@ router.put('/:id', requireAuth, validateSpots, async (req, res) => {
       statusCode: 403
    }) 
   }
-  
-  if (stars > 5 || stars <= 0) {
+
+  if (review.stars > 5 || review.stars <= 0) {
     return error.errors.stars = "Stars must be an integer from 1 to 5"
 }
 
