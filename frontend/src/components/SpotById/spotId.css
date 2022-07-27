@@ -1,0 +1,212 @@
+.detailPage {
+    margin: 100px auto 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    gap: 15px;
+}
+
+.topDiv {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+}
+
+.topText {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.topText>ul {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#avgRating {
+    color: black;
+}
+
+#location {
+    color: gray;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+#reviewsLink>a {
+    font-weight: 500;
+    text-decoration: underline;
+    color: black;
+
+}
+
+.topText>ul>li {
+    padding-right: 7px;
+    font-weight: 500;
+
+}
+
+.user_btn {
+    background: linear-gradient(to bottom right,
+            #E5204D, #D70965);
+    color: white;
+    font-weight: 500;
+    height: 45px;
+    width: 80px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.user_btn {
+    cursor: pointer;
+
+}
+
+.topButtons {
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.star {
+    color: #FF385C;
+}
+
+.test {
+    color: black;
+    font-weight: 400;
+
+}
+
+.images {
+    margin: 0 auto;
+    box-sizing: border-box;
+    padding: 16px 16px 16px 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-auto-rows: 300px;
+    gap: 16px;
+    ;
+}
+
+.images>img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.image-0 {
+    grid-column: span 2;
+    grid-row: span 2;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 15px;
+}
+
+.image-1 {
+    grid-column: span 1;
+    grid-row: span 1;
+}
+
+.image-2 {
+    grid-column: span 1;
+    grid-row: span 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 15px;
+}
+
+.image-3 {
+    grid-column: span 1;
+    grid-row: span 1;
+
+}
+
+.image-4 {
+    grid-column: span 1;
+    grid-row: span 1;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 15px;
+}
+
+.bottomSection {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    padding-bottom: 80px;
+    border-bottom: #D3D3D3 solid 1px;
+}
+
+.leftSecInner {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.leftSec {
+    display: flex;
+    flex-direction: column;
+    width: 65%;
+    gap: 5px;
+}
+
+.leftSec>p {
+    font-size: 25px;
+    font-weight: 500;
+    margin-bottom: -10px;
+}
+
+.rightSec {
+    width: 35%;
+    margin-right: 20px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+}
+
+
+
+
+#listing_detail_host {
+    font-size: 20px;
+    font-weight: 500;
+
+}
+
+.activeBtn {
+    background: linear-gradient(to bottom right,
+            #E5204D, #D70965);
+    color: white;
+    font-weight: 500;
+    height: 45px;
+    width: 80%;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+
+.descriptionDiv {
+    padding-top: 10px;
+    width: 90%;
+    border-top: #D3D3D3 solid 1px;
+    letter-spacing: .5px;
+    line-height: 25px;
+    text-align: justify;
+}
+
+.reviewsDiv {
+    margin-bottom: 100px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    grid-gap: 10px;
+}
+
+#reviewButtons {
+    display: flex;
+    justify-content: flex-end;
+    /* margin-top: 50px; */
+    width: 100%;
+
+}
