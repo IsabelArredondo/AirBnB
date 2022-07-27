@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getAllSpots } from '../../store/spots';
 import { Link, } from 'react-router-dom';
-import './spots.css'
 
 const Spots = () => {
     const dispatch = useDispatch();
