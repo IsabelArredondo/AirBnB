@@ -1,17 +1,19 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { Link } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import './ProfileButton.css';
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  
+
   const openMenu = () => {
     if (showMenu) return;
     setShowMenu(true);
   };
-  
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -20,7 +22,7 @@ function ProfileButton({ user }) {
     };
 
     document.addEventListener('click', closeMenu);
-  
+
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
@@ -29,18 +31,24 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+
+
   return (
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
-      </button>
+      <button id="menu" onClick={openMenu}>
+        <i className="fas fa-bars nav_bars_icon"></i>
+        <i className="fas fa-user-circle nav_user_icon"></i>     
+       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div id="dropdown">
+           <Link to="/user/spots" id="dropdown_second">
+              See Your Listings
+            </Link>
+            <Link to="/spot/createSpot" id="dropdown_third">
+              Host an Experience
+            </Link>
+          <div id="dropdown_last" onClick={logout}>Log Out</div>
+        </div>
       )}
     </>
   );

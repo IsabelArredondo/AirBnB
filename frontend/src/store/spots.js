@@ -2,11 +2,9 @@ import { csrfFetch } from './csrf';
 
 
 const CREATE_SPOT = 'spots/CREATE_SPOT'
-
 const LOAD_SPOTS = 'spots/load'
-
-const GET_SPOT = "spots/get-spot";
-
+const GET_SPOT = 'spots/get-spot'
+const DELETE_SPOT = 'spots/delete-spot'
 
 const getSpot = (spot) => {
     return {
@@ -14,6 +12,7 @@ const getSpot = (spot) => {
         spot,
     };
 };
+
 
 const load = spots => ({
     type: LOAD_SPOTS,
@@ -24,6 +23,29 @@ const create = (newSpot) => ({
     type: CREATE_SPOT,
     newSpot
 })
+
+const deleteSpot = (spotId) => {
+    return {
+      type: DELETE_SPOT,
+      spotId,
+    };
+  };
+
+//DELETE
+export const spotDelete = (spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/spots/delete/${spotId}`, {
+      method: "DELETE",
+      body: JSON.stringify({
+        spotId,
+      }),
+    });
+  
+    const res = await response.json();
+    dispatch(deleteSpot(spotId));
+    return res;
+  };
+
+
 
 //Get a spot detail
 export const findASpot = (spotId) => async (dispatch) => {
@@ -86,6 +108,7 @@ export const getAllSpots = () => async (dispatch) => {
     if (response.ok) {
         const spots = await response.json();
         dispatch(load(spots))
+
         const all = {};
         spots.spot.forEach((spot) => (all[spot.id] = spot));
         return { ...all };
@@ -102,11 +125,10 @@ const spotsReducer = (state = initialState, action) => {
         case LOAD_SPOTS:
             const allSpots = { ...state };
             action.spots.spot.forEach(spot => allSpots[spot.id] = spot);
-            return { ...allSpots, ...state };
+            return { ...allSpots};
        
 
-        case CREATE_SPOT:
-        
+        case CREATE_SPOT:       
             const newState = {
                 ...state,
                 [action.newSpot.id]: action.newSpot
@@ -117,8 +139,17 @@ const spotsReducer = (state = initialState, action) => {
             const allSpots = { ...state }
             const spot = action.spot;
              allSpots[spot.id] = spot;
-            return { ...allSpots, ...state };
+            return {...allSpots};
         }
+
+        case DELETE_SPOT: {
+            const newState2 = { ...state };
+            delete newState2[action.res];
+            return newState2;
+          }
+
+      
+
         default:
             return state;
 

@@ -6,30 +6,38 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 import './Navigation.css';
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
 
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
-      <ProfileButton user={sessionUser} />
+      <div id="nav_right_div">
+        <ProfileButton user={sessionUser} />
+      </div>
     );
   } else {
     sessionLinks = (
-      <>
-        <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
-      </>
+      <div id="nav_right_div">
+        <div id="log_in_Button_div">   <LoginFormModal /></div>
+        <div id="sign_up_link">  <NavLink to="/signup">Sign Up</NavLink></div>
+      </div>
     );
   }
 
   return (
-    <ul>
-      <li>
-        <NavLink exact to="/">Home</NavLink>
+    <nav>
+      <div id="navBar">
+        <div id='logo_div'>
+          <NavLink exact to="/">
+            <img src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"></img>
+          </NavLink>
+        </div>
         {isLoaded && sessionLinks}
-      </li>
-    </ul>
+      </div >
+
+
+    </nav >
   );
 }
 

@@ -6,6 +6,7 @@ import SignUpFormPage from "./components/SignUpFormPage";
 import Spots from './components/Spots'
 import SpotById from './components/SpotById'
 import CreateArea from './components/CreateSpot'
+import UserSpots from "./components/UserSpots";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 
@@ -35,6 +36,10 @@ function App() {
 
           <Route exact path="/spot/createSpot">
             <CreateArea />
+          </Route>
+
+          <Route exact path="/user/spots">
+            <UserSpots />
           </Route>
 
         </Switch>
