@@ -6,7 +6,7 @@ module.exports = {
       {
          userId: 2,
          spotId: 2,
-         reviewId: 2,
+         //reviewId: 2,
          imageableId: 2,
          imageableType: 'spot',
          url: 'https://www.forbes.com/advisor/home-improvement/types-of-house-styles/',
@@ -14,7 +14,7 @@ module.exports = {
 
       {
         userId: 1,
-        spotId: 1,
+        //spotId: 1,
         reviewId: 1,
         imageableId: 1,
         imageableType: 'review',

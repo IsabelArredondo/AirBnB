@@ -214,13 +214,13 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
 })
 
 //put spot 
-router.put('/:ownerId', validateSpots, requireAuth, async (req, res) => {
+router.put('/:id', validateSpots, requireAuth, async (req, res) => {
   const { address, city, state, country, lat, lng, name, description, price } = req.body
-  const spots = await Spot.findOne(
+  const spots = await Spot.findByPk(req.params.id,
 
     {
       where: {
-        ownerId: req.params.ownerId
+        ownerId: req.params.id
       }
     }
   );
@@ -276,8 +276,8 @@ router.delete('/delete/:id', requireAuth, async (req, res) => {
     })
   }
 
-  spots.destroy()
-  spots.save()
+   await spots.destroy()
+  //spots.save()
 
   res.json({
     message: "Successfully deleted",

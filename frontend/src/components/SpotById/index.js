@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findASpot, spotDelete  } from "../../store/spots";
+import { findASpot, spotDelete, updateListing  } from "../../store/spots";
 import './spotId.css'
 
 const SpotDetails = () => {
@@ -17,12 +17,18 @@ const SpotDetails = () => {
 
   useEffect(() => {
     dispatch(findASpot(spotId));
+    
   }, [dispatch, spotId]);
 
   const removeSpot = (e) => {
     e.preventDefault()
     dispatch(spotDelete(spotId))
     history.push('/user/spots')
+  }
+  const editSpot = (e) => {
+    e.preventDefault()
+    dispatch(updateListing(spotId))
+    history.push(`/edit/userSpot/${spotId}`)
   }
 
   return (
@@ -44,6 +50,7 @@ const SpotDetails = () => {
       </div>
       <div>{spots?.description}</div>
       <button onClick={removeSpot}>DELETE</button>
+      <button onClick={editSpot}>EDIT</button>
    
     </>
   )

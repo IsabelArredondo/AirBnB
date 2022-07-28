@@ -10,9 +10,6 @@ const CreateArea = () => {
     const history = useHistory()
     const sessionUser = useSelector((state) => state.session.user);
     const [name, setName] = useState('');
-    const [beds, setBeds] = useState(1);
-    const [bedrooms, setBedrooms] = useState(1);
-    const [bathrooms, setBathrooms] = useState(1);
     const [description, setDescription] = useState('');
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('');
@@ -65,70 +62,12 @@ const CreateArea = () => {
         
         if (spotCreated) {
 
-            history.push(`/spots/${spotCreated.id}`);
+            //history.push(`/spots/${spotCreated.id}`);
             
         }
         
         
     }
-
-   
-
- 
-
-    const handleBedsIncrement = (e) => {
-        e.preventDefault();
-        setBeds((beds) => beds + 1)
-    }
-
-    const handleBedsDecrement = (e) => {
-        e.preventDefault();
-
-        setBeds((beds) => {
-            if (beds > 1) {
-                return beds - 1
-            } else {
-                return beds
-            }
-        })
-    }
-
-
-    const handleBedroomIncrement = (e) => {
-        e.preventDefault();
-        setBedrooms((bedrooms) => bedrooms + 1)
-    }
-
-    const handleBedroomDecrement = (e) => {
-        e.preventDefault();
-
-        setBedrooms((bedrooms) => {
-            if (bedrooms > 1) {
-                return bedrooms - 1
-            } else {
-                return bedrooms
-            }
-        })
-    };
-
-    const handleBathroomsIncrement = (e) => {
-        e.preventDefault();
-        setBathrooms((bedrooms) => bedrooms + .5)
-    }
-
-    const handleBathroomsDecrement = (e) => {
-        e.preventDefault();
-
-        setBathrooms((bedrooms) => {
-            if (bedrooms > 1) {
-                return bedrooms - .5
-            } else {
-                return bedrooms
-            }
-        })
-    };
-
- 
 
     return (
         <>
@@ -161,56 +100,7 @@ const CreateArea = () => {
                               
 
                             </label>
-                            <label className="form_buttons_label">
-                                <p>Beds</p>
-                                <div className="bedsButtons">
-                                    <button
-                                        onClick={handleBedsDecrement}
-                                        className="decrement">
-                                        <i className="fas fa-minus"></i>
-                                    </button>
-                                    <p>{beds}</p>
-                                    <button
-                                        onClick={handleBedsIncrement}
-                                        className="increment">
-                                        <i className="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </label>
-
-                            <label className="form_buttons_label">
-                                <p>Bedrooms</p>
-                                <div className="bedroomButtons">
-                                    <button
-                                        onClick={handleBedroomDecrement}
-                                        className="decrement">
-                                        <i className="fas fa-minus"></i>
-                                    </button>
-                                    <p>{bedrooms}</p>
-                                    <button
-                                        onClick={handleBedroomIncrement}
-                                        className="increment">
-                                        <i className="fas fa-plus"></i>
-                                    </button>
-                                </div>
-                            </label>
-                            <label className="form_buttons_label">
-                                <p>Bathrooms</p>
-                                <div className="bathroomsButtons">
-                                    <button
-                                        onClick={handleBathroomsDecrement}
-                                        className="decrement">
-                                        <i className="fas fa-minus"></i>
-                                    </button>
-                                    <p>{bathrooms}</p>
-                                    <button
-                                        onClick={handleBathroomsIncrement}
-                                        className="increment">
-                                        <i className="fas fa-plus"></i>
-                                    </button>
-                                </div>
-
-                            </label>
+                          
                         </div>
                         <label >
                             <p>Tell us about your place</p>

@@ -9,6 +9,7 @@ import CreateArea from './components/CreateSpot'
 import UserSpots from "./components/UserSpots";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import EditSpot from "./components/EditSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -40,6 +41,10 @@ function App() {
 
           <Route exact path="/user/spots">
             <UserSpots />
+          </Route>
+
+          <Route exact path="/edit/userSpot/:id">
+            <EditSpot />
           </Route>
 
         </Switch>

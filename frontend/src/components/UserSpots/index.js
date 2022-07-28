@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { getAllSpots } from '../../store/spots';
+import { getAllSpots, updateListing } from '../../store/spots';
 import { Link, } from 'react-router-dom';
 
 const UserSpots = () => {
@@ -10,11 +10,9 @@ const UserSpots = () => {
     const dispatch = useDispatch();
     
     const id = useSelector((state) => state.session.user.id);
-
-
     const allspots = useSelector((state) => Object.values(state.spots));
-
     const userSpots =  allspots.filter(spot => spot.ownerId === id);
+
 
     useEffect(() => {
         if (!id) {
@@ -26,6 +24,7 @@ const UserSpots = () => {
         dispatch(getAllSpots());
     }, [dispatch])
 
+   
 
     return (
         <>
