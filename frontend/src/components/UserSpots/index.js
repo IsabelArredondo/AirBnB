@@ -2,7 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { getAllSpots } from '../../store/spots';
-import { Link, } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 const UserSpots = () => {

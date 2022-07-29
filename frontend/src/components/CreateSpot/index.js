@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { createSpot } from '../../store/spots';
+import { useState, useEffect } from 'react';
+import { createSpot, getAllSpots } from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
@@ -17,6 +17,7 @@ const CreateArea = () => {
     const [country, setCountry] = useState('');
     const [lat, setLat] = useState('');
     const [lng, setLng] = useState('');
+    const [previewImage, setPreviewImage] = useState('')
     const [price, setPrice] = useState('');
 
     const [errors, setErrors] = useState([]);
@@ -45,26 +46,20 @@ const CreateArea = () => {
         }
 
         const newSpot = {
-            name,
-            description,
-            address,
-            city,
-            state,
-            country,
-            lat,
-            lng,
-            price
+            name: name,
+            address: address,
+            city: city,
+            state: state,
+            country: country,
+            lat: lat,
+            lng: lng,
+            previewImage: previewImage,
+            description: description,
+            price: price
         };
 
-        const spotCreated = await dispatch(createSpot(newSpot))
-
-        console.log('entire Spot', spotCreated, 'spot id', spotCreated.id)
-
-        if (spotCreated) {
-
-            history.push('/user/spots');
-
-        }
+        history.push('/user/spots');
+        return dispatch(createSpot(newSpot))
 
 
     }
@@ -89,7 +84,8 @@ const CreateArea = () => {
                             placeholder="Lovely 3-bedroom vacation home
                                  with pool"
                             required={true}
-                            onChange={(e) => setName(e.target.value)} />
+                            onChange={(e) => setName(e.target.value)}
+                        />
                     </label>
                     <label >
                         <p>Tell us about your place</p>
@@ -146,6 +142,16 @@ const CreateArea = () => {
                             placeholder=" find coordinates on google maps"
                             value={lat}
                             onChange={(e) => setLat(Number(e.target.value))} />
+                    </label>
+                    <label>
+                        Preview Image:
+                        <input
+                            type="text"
+                            placeholder='url'
+                            value={previewImage}
+                            onChange={(e) => setPreviewImage(e.target.value)}
+                            required
+                        />
                     </label>
 
                     <label>

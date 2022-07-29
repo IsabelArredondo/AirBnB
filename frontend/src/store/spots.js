@@ -72,37 +72,19 @@ export const findASpot = (spotId) => async (dispatch) => {
 //CREATE SPOT
 export const createSpot = (data) => async (dispatch) => {
 
-    const {
-        name,
-        description,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        price
-    } = data;
-
     const response = await csrfFetch('/spots', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-            name,
-            description,
-            address,
-            city,
-            state,
-            country,
-            lat,
-            lng,
-            price
-        })
+        body: JSON.stringify(data)
     });
 
-    const newSpot = await response.json();
-    dispatch(create(newSpot));
-    return newSpot
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(create(data));
+        return data
+    }
+
+    return response
 };
 
 //EDIT SPOT 
@@ -169,11 +151,9 @@ const spotsReducer = (state = initialState, action) => {
 
 
         case CREATE_SPOT:
-            const newState = {
-                ...state,
-                [action.newSpot.id]: action.newSpot
-            }
-            return newState;
+            const newerState = {...state}
+            newerState[action.newSpot.id] = action.newSpot
+            return newerState
 
         case GET_SPOT: {
             const allSpots = {...state}
