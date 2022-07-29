@@ -70,7 +70,7 @@ const CreateArea = () => {
 
             <div className='createListingPage'>
                 <h2> A new hosting journey starts here</h2>
-                <p>Every Experience idea is reviewed by a small team at Airbnb. If your idea meets quality standards, you’ll get to add dates and start hosting.</p>
+                <p>Every Experience idea is reviewed by a small team at Airbnb. If your idea meets quality standards, youll get to add dates and start hosting.</p>
 
                 <form
                     onSubmit={handleSubmit}
@@ -139,21 +139,10 @@ const CreateArea = () => {
                             step="any"
                             name="lat"
                             required={true}
-                            placeholder=" find coordinates on google maps"
+                            placeholder=" find coordinates"
                             value={lat}
                             onChange={(e) => setLat(Number(e.target.value))} />
                     </label>
-                    <label>
-                        Preview Image:
-                        <input
-                            type="text"
-                            placeholder='url'
-                            value={previewImage}
-                            onChange={(e) => setPreviewImage(e.target.value)}
-                            required
-                        />
-                    </label>
-
                     <label>
                         <p>Longtitude</p>
 
@@ -162,12 +151,21 @@ const CreateArea = () => {
                             type="number"
                             step="any"
                             name="lgt"
-                            placeholder=" find coordinates on google maps"
+                            placeholder=" find coordinates"
                             value={lng}
                             required={true}
                             onChange={(e) => setLng(Number(e.target.value))} />
                     </label>
-
+                    <label>
+                      <p>PreviewImage</p>
+                        <input
+                            type="text"
+                            placeholder='url'
+                            value={previewImage}
+                            onChange={(e) => setPreviewImage(e.target.value)}
+                            required
+                        />
+                    </label>
                     <label>
                         <p>Price per night</p>
 
@@ -180,7 +178,7 @@ const CreateArea = () => {
                             value={price}
                             onChange={(e) => setPrice(Number(e.target.value))} />
                     </label>
-                    {errors && errors.map((error, idx) => <li key={idx} className="errorLi">{error}</li>)}
+                    {errors && errors.map((error, i) => <li key={i} className="error">{error}</li>)}
                     <button type="submit" className="create_btn">Create</button>
                 </form>
 

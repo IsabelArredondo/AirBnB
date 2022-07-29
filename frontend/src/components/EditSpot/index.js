@@ -12,7 +12,7 @@ const EditSpot = () => {
     id = Number(id)
     //console.log('THIS IS A PARAM', id)
     const spot = useSelector((state) => (state.spots[id]));
-    console.log('THIS IS A SPOT',spot)
+    //console.log('THIS IS A SPOT',spot)
 
     useEffect(() => {
         dispatch(findASpot(id));
@@ -30,6 +30,7 @@ const EditSpot = () => {
     //const [image, setImage] = useState('')
     const [previewImage, setPreviewImage] = useState(spot.previewImage)
     const [price, setPrice] = useState(spot.price)
+
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 
@@ -69,7 +70,7 @@ const EditSpot = () => {
         return dispatch(updateListing(editedSpot, spot.id))
 
         .then(async (res) => {
-            console.log("success");
+            //console.log("success");
             setSubmitted(true);
           })
         .catch(async (res) => {

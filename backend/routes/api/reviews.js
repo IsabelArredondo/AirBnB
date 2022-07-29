@@ -1,4 +1,3 @@
-
 const express = require('express');
 const { requireAuth } = require('../../utils/auth');
 const { Review, Image, Spot, User } = require('../../db/models');
@@ -35,7 +34,7 @@ router.get('/userReviews', requireAuth, async (req, res) => {
 
     where: { userId: id }
   });
-  res.json(reviews[0])
+  res.json(reviews)
 });
 
 
@@ -192,7 +191,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
     })
   }
 
-  console.log('BACKEND', reviews.userId, req.user.id, reviews)
+  //console.log('BACKEND', reviews.userId, req.user.id, reviews)
   
   if (reviews.userId !== req.user.id) {
      return res.status(403).json({

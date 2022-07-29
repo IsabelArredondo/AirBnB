@@ -79,12 +79,11 @@ export const createSpot = (data) => async (dispatch) => {
     });
 
     if (response.ok) {
-        const data = await response.json();
-        dispatch(create(data));
-        return data
+        const newData = await response.json();
+        dispatch(create(newData));
+        return newData
     }
 
-    return response
 };
 
 //EDIT SPOT 
@@ -99,6 +98,7 @@ export const updateListing = (formValue, id) => async (dispatch) => {
         country,
         lat,
         lng,
+        previewImage,
         price
     } = formValue;
 
@@ -113,6 +113,7 @@ export const updateListing = (formValue, id) => async (dispatch) => {
             country,
             lat,
             lng,
+            previewImage,
             price
         })
     });
@@ -145,16 +146,20 @@ const initialState = {};
 const spotsReducer = (state = initialState, action) => {
     switch (action.type) {
         case LOAD_SPOTS:
-            const allSpots = { ...state };
+            // do not spead stale state (causes duplicates) NEVER DO THIS IN LOAD
+            const allSpots = {};
             action.spots.spot.forEach(spot => allSpots[spot.id] = spot);
             return { ...allSpots };
 
 
         case CREATE_SPOT:
+            //console.log('ACTION',action)
             const newerState = {...state}
+            //console.log('newerState', newerState)
             newerState[action.newSpot.id] = action.newSpot
+            //console.log('action.newSpot',action.newSpot)
             return newerState
-
+           
         case GET_SPOT: {
             const allSpots = {...state}
             const spot = action.spot;

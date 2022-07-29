@@ -78,16 +78,16 @@ const reviewsReducer = (state = initialState, action) => {
     switch (action.type) {
 
         case LOAD_REVIEWS:
-            newState = { ...state };
+            newState = { };
             action.payload.forEach((review) => { newState[review.id] = review });
             return { ...newState };
 
         case CREATE:
-            console.log("ACTION ITEM", state);
+            //console.log("ACTION ITEM", state);
             newState = { ...state }
             newState[action.newReview.id] = action.newReview
 
-            console.log("ACTION ", newState);
+            //console.log("ACTION ", newState);
             return newState;
 
         case DELETE: {

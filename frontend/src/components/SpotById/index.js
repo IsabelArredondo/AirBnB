@@ -16,7 +16,7 @@ const SpotDetails = () => {
 
  const currentUser = useSelector((state) => state?.session);
  const spots = useSelector((state) => (state?.spots[spotId]));
- console.log('SPOTS OWNER',spots.ownerId)
+ //console.log('SPOTS OWNER',spots.ownerId)
 
 
   useEffect(() => {

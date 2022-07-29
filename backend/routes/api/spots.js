@@ -141,12 +141,12 @@ router.get('/userSpots', requireAuth, async (req, res) => {
   const places = await Spot.findAll({
     include: {
       model: Image,
-      as: 'previewImage',
+      // as: 'previewImage',
       attributes: ['url']
     },
     where: { ownerId: id }
   });
-  res.json(places[0])
+  res.json(places)
 });
 
 const validateSpots = [
@@ -183,7 +183,7 @@ const validateSpots = [
 
 //post newSpot
 router.post('/', validateSpots, requireAuth, async (req, res) => {
-  let { address, city, state, country, lat, lng, name, description, price } = req.body
+  let { address, city, state, country, lat, lng, name, description, previewImage, price } = req.body
 
   const newSpot = await Spot.create({
     ownerId: req.user.id,
@@ -195,10 +195,13 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
     lng,
     name,
     description,
+    previewImage,
     price
   })
-
-  res.json({   
+   
+  //NEED TO PASS IN AN ID WHEN DOIND RES.JSON
+  res.json({
+    id: newSpot.id,   
     ownerId: req.user.id,
     address: newSpot.address,
     city: newSpot.city,
@@ -208,6 +211,7 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
     lng: newSpot.lng,
     name: newSpot.name,
     description: newSpot.description,
+    previewImage: newSpot.description,
     price: newSpot.price,
     createdAt: newSpot.createdAt,
     updatedAt: newSpot.updatedAt
@@ -216,7 +220,7 @@ router.post('/', validateSpots, requireAuth, async (req, res) => {
 
 //put spot 
 router.put('/:id', validateSpots, requireAuth, async (req, res) => {
-  const { address, city, state, country, lat, lng, name, description, price } = req.body
+  const { address, city, state, country, lat, lng, name, description, previewImage, price } = req.body
   const spots = await Spot.findByPk(req.params.id,
 
     {
@@ -250,6 +254,7 @@ router.put('/:id', validateSpots, requireAuth, async (req, res) => {
   spots.lng = lng
   spots.name = name
   spots.description = description
+  spots.previewImage = previewImage
   spots.price = price
 
   await spots.save()
