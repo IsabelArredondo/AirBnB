@@ -2,8 +2,11 @@
 import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+
 
 function LoginForm() {
+  const history = useHistory()
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,13 +15,29 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
+    
     return dispatch(sessionActions.login({ email, password })).catch(
       async (res) => {
+        
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
-    );
+    )
+    
   };
+
+  const demoUser = (e) => {
+    e.preventDefault();
+    setErrors([]);
+    setEmail('john.smith@gmail.com');
+    setPassword('secret password');
+    return dispatch(sessionActions.demoUsers()).catch(
+        async (res) => {
+            const data = await res.json();
+            if (data && data.errors) setErrors(data.errors);
+        }
+    );
+};
 
   return (
     <form onSubmit={handleSubmit}>
@@ -45,7 +64,8 @@ function LoginForm() {
           required
         />
       </label>
-      <button type="submit">Log In</button>
+      <button  type="submit">Log In</button>
+      <button type="submit" onClick={demoUser}>Demo User</button>
     </form>
   );
 }

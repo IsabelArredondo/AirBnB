@@ -1,0 +1,5 @@
+.spotImgs {
+    max-width: 35%;
+    max-height: 35%;
+    object-fit: cover;
+  }

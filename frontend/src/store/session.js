@@ -26,7 +26,21 @@ export const login = (user) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  dispatch(setUser(data.user));
+  dispatch(setUser(data));
+  //line 30 - data.user
+  return response;
+};
+
+export const demoUsers = () => async (dispatch) => {
+  const response = await csrfFetch('/session', {
+      method: 'POST',
+      body: JSON.stringify({
+          email: 'john.smith@gmail.com',
+          password: 'secret password'
+      }),
+  });
+  const data = await response.json();
+  dispatch(setUser(data));
   return response;
 };
 
@@ -34,6 +48,7 @@ export const restoreUser = () => async dispatch => {
   const response = await csrfFetch('/session');
   const data = await response.json();
   dispatch(setUser(data.user));
+  //line 37 - data.user
   return response;
 };
 
@@ -50,6 +65,7 @@ export const signup = (user) => async (dispatch) => {
   });
   const data = await response.json();
   dispatch(setUser(data.user));
+  //line 54 - data.user
   return response;
 };
 

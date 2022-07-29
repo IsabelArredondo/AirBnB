@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import { Route, Switch } from "react-router-dom";
 import SignUpFormPage from "./components/SignUpFormPage";
 import Spots from './components/Spots'
-import SpotById from './components/SpotById'
+import SpotById from './components/SpotById/index'
 import CreateArea from './components/CreateSpot'
 import UserSpots from "./components/UserSpots";
+import Reviews from "./components/SpotById/reviews";
+import CreateReview from "./components/CreateReview";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
 import EditSpot from "./components/EditSpot";
@@ -45,6 +47,14 @@ function App() {
 
           <Route exact path="/edit/userSpot/:id">
             <EditSpot />
+          </Route>
+
+          <Route exact path="/reviews">
+            <Reviews />
+          </Route>
+
+          <Route exact path="/reviews/create/:spotId">
+            <CreateReview />
           </Route>
 
         </Switch>

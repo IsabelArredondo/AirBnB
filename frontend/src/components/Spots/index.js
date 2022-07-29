@@ -17,17 +17,18 @@ const Spots = () => {
     return (
         <>
           <div className="all-spots-div">
-          <div className="left"></div>
           {allspots.map((spot) => (
                 <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
 
 
                   <div className={`spot-div spot-div`}>
                     <div className="img-div">
+                      <img className="spotImg" src={spot.previewImage} alt='pre-img'/> 
                     </div>
                     <div className="spot-info">
+                      <h3 className="spotName">{spot.name}</h3>
                       <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
-                      <p className="spot-price">{`$${spot?.price} / night`}</p>
+                      <p className="spot-price">{`$${spot?.price} night`}</p>
                     </div>
                   </div>
                 </Link>

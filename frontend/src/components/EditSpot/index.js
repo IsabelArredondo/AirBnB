@@ -10,7 +10,7 @@ const EditSpot = () => {
     
     let { id } = useParams()
     id = Number(id)
-    console.log('THIS IS A PARAM', id)
+    //console.log('THIS IS A PARAM', id)
     const spot = useSelector((state) => (state.spots[id]));
     console.log('THIS IS A SPOT',spot)
 
@@ -19,17 +19,17 @@ const EditSpot = () => {
         
       }, [dispatch, id]);
 
-    const [address, setAddress] = useState('')
-    const [city, setCity] = useState('')
-    const [state, setState] = useState('')
-    const [country, setCountry] = useState('')
-    const [lat, setLat] = useState(1)
-    const [lng, setLng] = useState(1)
-    const [name, setName] = useState('')
-    const [description, setDescription] = useState('')
+    const [address, setAddress] = useState(spot.address)
+    const [city, setCity] = useState(spot.city)
+    const [state, setState] = useState(spot.state)
+    const [country, setCountry] = useState(spot.country)
+    const [lat, setLat] = useState(spot.lat)
+    const [lng, setLng] = useState(spot.lng)
+    const [name, setName] = useState(spot.name)
+    const [description, setDescription] = useState(spot.description)
     //const [image, setImage] = useState('')
-    const [previewImage, setPreviewImage] = useState('')
-    const [price, setPrice] = useState(0)
+    const [previewImage, setPreviewImage] = useState(spot.previewImage)
+    const [price, setPrice] = useState(spot.price)
     const [errors, setErrors] = useState([])
     const [submitted, setSubmitted] = useState(false)
 

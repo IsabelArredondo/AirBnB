@@ -4,9 +4,10 @@
   }
   
   .all-spots-div {
-    padding: 10px;
+    
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 4fr 1fr;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr; */
     place-items: center;
   }
   
@@ -17,18 +18,27 @@
   }
   
   .img-div {
-    height: 396px;
+    height: 310px;
     width: 392px;
     display: flex;
     margin: auto;
   }
   
-  .spot-img {
+  /* .spotImg {
     max-width: 100%;
     max-height: 100%;
     object-fit: cover;
     border-radius: 20px;
-  }
+  } */
+
+  .spotImg {
+    float: left;
+    width: 300px;
+    height: 300px;
+    background-size: cover;
+    border-radius: 15px;
+    margin: 1rem;
+}
   
   .spot-detail {
     display: grid;
@@ -40,6 +50,7 @@
   .spot-info {
     display: flex;
     flex-direction: column;
+    justify-content: center;
   }
   
   .spot-rating {
@@ -71,65 +82,3 @@
     color: black;
   }
   
-  @media screen and (max-width: 990px) {
-    .all-spots-div {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-  
-    .img-div {
-      height: 460px;
-      width: 500px;
-    }
-  
-    .spot-div {
-      height: 560px;
-      width: 530px;
-    }
-  }
-  
-  @media screen and (min-width: 991px) and (max-width: 1300px) {
-    .all-spots-div {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-  
-    .img-div {
-      height: 470px;
-      width: 480px;
-    }
-  
-    .spot-div {
-      height: 570px;
-      width: 430px;
-      margin: 10px;
-    }
-  }
-  
-  @media screen and (min-width: 1301px) and (max-width: 1700px) {
-    .all-spots-div {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-    }
-  
-    .img-div {
-      height: 420px;
-      width: 430px;
-    }
-  
-    .spot-div {
-      height: 520px;
-      width: 410px;
-      margin: 10px;
-    }
-  }
-  
-  @media screen and (min-width: 1701px) {
-    .all-spots-div {
-      margin: 40px 150px;
-    }
-  
-    .spot-div {
-      margin: 10px;
-    }
-  }
