@@ -75,14 +75,15 @@ router.get('/', async (req, res) => {
       [Op.and]: options
 
     },
-    include: {
-      model: Image,
-      as: 'previewImage',
-      attributes: ['url']
-    },
+    // include: {
+    //   model: Image,
+    //   as: 'previewImage',
+    //   attributes: ['url']
+    // },
     limit: size || 20,
     offset: page * size,
   });
+  //console.log('THIS IS SPOT BACKEND',spot)
   return res.json({
     spot,
     page,
@@ -98,7 +99,7 @@ router.get('/:id(\\d+)', async (req, res) => {
     include: [
       {
         model: Image,
-        as: 'images',
+        // as: 'images',
         attributes: ['url']
       },
       {
@@ -136,7 +137,7 @@ router.get('/:id(\\d+)', async (req, res) => {
 // get all spots based on user id 
 router.get('/userSpots', requireAuth, async (req, res) => {
   const { id } = req.user
-  console.log(id)
+  //console.log(id)
   const places = await Spot.findAll({
     include: {
       model: Image,

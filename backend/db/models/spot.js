@@ -16,14 +16,14 @@ module.exports = (sequelize, DataTypes) => {
        foreignKey: 'ownerId', as: 'Owner'
      })
      Spot.hasMany(models.Review, {
-       foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true
+       foreignKey: 'spotId'   , onDelete: 'CASCADE', hooks: true
      })
       Spot.hasMany(models.Image, {
-        foreignKey: 'spotId', as: 'images', onDelete: 'CASCADE', hooks: true
+        foreignKey: 'spotId', onDelete: 'CASCADE', hooks: true
       })
-      Spot.hasMany(models.Image, {
-        foreignKey: 'spotId', as: 'previewImage', onDelete: 'CASCADE', hooks: true
-      })
+      // Spot.hasMany(models.Image, {
+      //   foreignKey: 'spotId', as: 'previewImage', onDelete: 'CASCADE', hooks: true
+      // })
       
 
     }
@@ -75,6 +75,9 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false,
+    },
+    previewImage: {
+      type: DataTypes.STRING,
     },
     price: {
       type: DataTypes.INTEGER,

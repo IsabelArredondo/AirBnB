@@ -14,7 +14,7 @@ module.exports = {
         references: {
           model: 'Users',
         },
-        
+        onDelete: 'CASCADE',
       },
       spotId: {
         type: Sequelize.INTEGER,
@@ -23,6 +23,8 @@ module.exports = {
           model: 'Spots',
           
         },
+        onDelete: 'CASCADE',
+
         
       },
       review: {

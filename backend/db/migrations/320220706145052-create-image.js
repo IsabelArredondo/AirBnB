@@ -2,6 +2,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('Images', {
+      
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -14,13 +15,19 @@ module.exports = {
           model: 'Reviews',
 
         },
+        onDelete: 'CASCADE',
+
+
       },
       userId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'Users',
           
-        }
+        },
+        onDelete: 'CASCADE',
+
+
       },
       spotId: {
         type: Sequelize.INTEGER,
@@ -28,8 +35,13 @@ module.exports = {
           model: 'Spots',
           
         },
-        //onDelete: 'CASCADE',
+        onDelete: 'CASCADE',
+
       },
+      // imageableId and imageableType are not 
+      // needed bc they are doing the same thing 
+      // as reviewId and spotId  
+
       imageableId: {
         type: Sequelize.INTEGER,
       },

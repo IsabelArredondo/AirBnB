@@ -91,7 +91,7 @@ const validateSpots = [
 router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
   const spotId = req.params.spotId
-  const id = req.user.id
+  const userId = req.user.id
   const spot = await Spot.findOne({
       where: { id: spotId}
   })
@@ -130,7 +130,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
 
   
   const newReview = await Review.create({
-    userId: id,
+    userId: userId,
     spotId: spotId,
     review,
     stars,
@@ -191,6 +191,9 @@ router.delete('/:id', requireAuth, async (req, res) => {
       statusCode: 404
     })
   }
+
+  console.log('BACKEND', reviews.userId, req.user.id, reviews)
+  
   if (reviews.userId !== req.user.id) {
      return res.status(403).json({
       message: "Forbidden",
@@ -199,7 +202,7 @@ router.delete('/:id', requireAuth, async (req, res) => {
   }
 
   reviews.destroy()
-  reviews.save()
+  //reviews.save()
 
   res.json({
     message: "Successfully deleted",
