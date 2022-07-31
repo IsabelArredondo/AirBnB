@@ -91,6 +91,10 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   let { review, stars } = req.body
   const spotId = req.params.spotId
   const userId = req.user.id
+  const firstName = req.user.firstName
+  const lastName = req.user.lastName
+  
+  console.log('FIRST NAME',req.user.firstName)
   const spot = await Spot.findOne({
       where: { id: spotId}
   })
@@ -131,11 +135,13 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   const newReview = await Review.create({
     userId: userId,
     spotId: spotId,
+    firstName: firstName,
+    lastName: lastName,
     review,
     stars,
   })
-
-  res.json(newReview)
+   console.log('!!!!!!!!!!! new rev !!!!', newReview)
+  return res.json(newReview)
 })
 
 
@@ -146,7 +152,7 @@ router.put('/:id', requireAuth,  validateSpots, async (req, res) => {
   const { review, stars } = req.body
   const reviews = await Review.findOne({ where: { id: req.params.id}});
   // both equal 1
-  //console.log(req.params.ownerId)
+  //console.log(req.params.id)
 
   if (!reviews ) {
     return res.status(404).json({
@@ -183,6 +189,7 @@ router.put('/:id', requireAuth,  validateSpots, async (req, res) => {
 router.delete('/:id', requireAuth, async (req, res) => {
 
   const reviews = await Review.findByPk(req.params.id);
+  //console.log("!!!!!!!BACKEND ID!!!!!!", req.params.id)
 
   if (!reviews) {
      return res.status(404).json({

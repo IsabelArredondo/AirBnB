@@ -24,8 +24,15 @@ module.exports = {
           
         },
         onDelete: 'CASCADE',
-
         
+      },
+      firstName: {
+        type: Sequelize.STRING,
+        allowNull: true,
+      },
+      lastName: {
+        type: Sequelize.STRING,
+        allowNull: true,
       },
       review: {
         type: Sequelize.STRING,

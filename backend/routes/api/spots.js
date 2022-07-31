@@ -80,9 +80,16 @@ router.get('/', async (req, res) => {
     //   as: 'previewImage',
     //   attributes: ['url']
     // },
+    include: {
+      model: Review,
+      // attributes: []
+    },
+
     limit: size || 20,
     offset: page * size,
   });
+
+  
   //console.log('THIS IS SPOT BACKEND',spot)
   return res.json({
     spot,

@@ -15,43 +15,47 @@ const Reviews = ({spotId, numReviews}) => {
     //  console.log("userReviews", userReviews)
     //  console.log("reviewsVariable", reviewsVariable)
 
-
-
+    useEffect(() => {
+      dispatch(getAllReviewsBySpotId(spotId));
+     }, [dispatch, spotId])
     
-     const removeReview = (e) => {
+    
+
+     const removeReview = (reviewId) => async (e) =>  {
       e.preventDefault()
-      dispatch(reviewDelete(userReviews[0].id))
+      await dispatch(reviewDelete(reviewId))
+      await (dispatch(getAllReviewsBySpotId(spotId)))
     }
 
-    useEffect(() => {
-        dispatch(getAllReviewsBySpotId(spotId));
-    }, [dispatch, spotId])
+    
 
    
     return (
         <>
           {reviewsVariable.map((reviewState, i) => {
-             if (spotId === reviewState?.spotId) {
+            //  if (spotId === reviewState?.spotId) {
+              //console.log(reviewState)
               return (
                 <div className='all-reviews-div' key={reviewState?.id}>
                 
                 <div>
-                <p className='stars'>{reviewState?.User?.firstName} {reviewState?.User?.lastName}</p>
+                <p className='stars'>{reviewState?.firstName} {reviewState?.lastName}</p>
                 <p className='user'>{`${reviewState?.stars} stars`} </p>
-                <p className='num reviews'>{`${numReviews} reviews`} </p>
                     <p className='actual-review'>{reviewState?.review} </p>
+
                     {currentUser &&
                      currentUser?.id === reviewState?.userId && (
                       
                       <div>
+                        <button onClick={removeReview(reviewState.id)}>Delete Review</button>
                         
-                        <button onClick={removeReview}>Delete Review</button>
                       </div>
                     )}
                   </div>
                  
                 </div>
-              )}  
+              )
+            //}  
           })}
         </>
       )

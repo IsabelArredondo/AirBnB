@@ -8,11 +8,14 @@ module.exports = {
         
         userId: 1,
         spotId: 1,
+        firstName: 'John',
+        lastName: 'Smith',
         review: 'This was an awesome spot!',
         stars: 5,
        },
        {
-        
+        firstName: 'john',
+        lastName: 'doe',
         userId: 2,
         spotId: 2,
         review: 'Would not recomend, I saw rats',

@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findASpot, spotDelete} from "../../store/spots";
 import Reviews from "./reviews";
 import ReviewFormModal from '../CreateReview/createReviewModal'
-//import CreateReview from "../CreateReview/index"
+import CreateReview from "../CreateReview/index"
 import './spotId.css'
 
 const SpotDetails = () => {
@@ -60,7 +60,7 @@ const SpotDetails = () => {
       <div>
       {currentUser &&
           currentUser?.user &&
-          currentUser?.user.id === spots?.ownerId && (
+          currentUser?.user.id && spots.id === spots?.ownerId && (
         <div>
               <button onClick={removeSpot}>Delete Spot</button>
               <button onClick={editSpot}>Edit Spot</button>
@@ -76,7 +76,7 @@ const SpotDetails = () => {
           currentUser?.user &&
           currentUser?.user.id !== spots?.ownerId &&  (
         <div>
-             <ReviewFormModal spotId1={spotId}/>
+             <CreateReview spotId1={spotId}/>
         </div>
         )}
        <Reviews spotId={spotId} numReviews={numReviews}/>

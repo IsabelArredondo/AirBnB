@@ -50,10 +50,10 @@ export const getAllReviewsBySpotId = (id) => async (dispatch) => {
     }
 }
 
-const deleteReview = (id) => {
+const deleteReview = (payload) => {
     return {
         type: DELETE,
-        id,
+        payload,
     };
 };
 
@@ -92,7 +92,7 @@ const reviewsReducer = (state = initialState, action) => {
 
         case DELETE: {
              newState = { ...state };
-            delete newState[action.id];
+            delete newState[action.payload];
             return newState;
         }
 

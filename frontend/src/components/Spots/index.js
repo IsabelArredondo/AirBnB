@@ -9,7 +9,7 @@ const Spots = () => {
    
 
     const allspots = useSelector((state) => Object.values(state.spots));
-   
+    
     useEffect(() => {
         dispatch(getAllSpots());
     }, [dispatch])
@@ -17,6 +17,7 @@ const Spots = () => {
     return (
         <>
           <div className="all-spots-div">
+          
           {allspots.map((spot) => (
                 <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
 
@@ -26,7 +27,8 @@ const Spots = () => {
                       <img className="spotImg" src={spot.previewImage} alt='pre-img'/> 
                     </div>
                     <div className="spot-info">
-                      <h3 className="spotName">{spot.name}</h3>
+                     <p className="">{`${spot?.Reviews?.length} `}</p>
+                      <h3 className="spotName">{spot?.name}</h3>
                       <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
                       <p className="spot-price">{`$${spot?.price} night`}</p>
                     </div>

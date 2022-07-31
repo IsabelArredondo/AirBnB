@@ -10,12 +10,23 @@ const CreateReview = ({spotId1}) => {
     const history = useHistory()
     const [review, setReview] = useState('');
     const [stars, setStars] = useState('');
+    const [errors, setErrors] = useState([]);
+    
 
     const sessionUser = useSelector((state) => state.session.user.id)
    
 
+
     const handleSubmit = async (e) => {
         e.preventDefault()
+        let validateErrors = [];
+        if (review.length < 5) validateErrors.push('Review must be longer than 5 characters');
+        if (stars < 1) validateErrors.push('Please enter a rating')
+
+        if (validateErrors.length > 0) {
+            setErrors(validateErrors);
+            return;
+        }
 
         const newReview = {
             userId: sessionUser,
@@ -23,17 +34,18 @@ const CreateReview = ({spotId1}) => {
             review,
             stars
         };
+            //history.push(`/spots/${spotId1}`);
+            
+              dispatch(createReview(newReview, spotId1))
+            
 
-            return  dispatch(createReview(newReview, spotId1))
-           
     }
-
     
 
 
     return (
         <form onSubmit={handleSubmit} className='createSpotForm' >
-
+            <ul> {errors.map((error, i) => ( <li key={i}>{error}</li>))}</ul>
             <label>
                 Review:
                 <input
@@ -53,7 +65,7 @@ const CreateReview = ({spotId1}) => {
                     required
                 />
             </label>
-            <button type="submit">Create Review</button>
+            <button  type="submit">Post your Review</button>
         </form>
     )
 }
