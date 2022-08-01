@@ -37,7 +37,7 @@ const UserSpots = () => {
 
                   <div className={`spot-div spot-div`}>
                     <div className="img-div">
-                    <img className="spotImg" src={spot.previewImage} alt='pre-img'/> 
+                    <img className="spotImg" src={spot?.previewImage} alt='pre-img'/> 
                     </div>
                     <div className="spot-info">
                       <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
