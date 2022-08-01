@@ -24,12 +24,17 @@ const Spots = () => {
 
                   <div className={`spot-div spot-div`}>
                     <div className="img-div">
-                      <img className="spotImg" src={spot.previewImage} alt='pre-img'/> 
+                      <img className="spotImg" src={spot?.previewImage} alt='pre-img'/> 
                     </div>
                     <div className="spot-info">
-                     <p className="">{`${spot?.Reviews?.length} `}</p>
-                      <h3 className="spotName">{spot?.name}</h3>
+                      {/* <h3 className="spotName">{spot?.name}</h3> */}
+                      <div className='adressraiting'>
                       <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
+                      <span className='space'></span>
+                      <div className="star">{<i className="fas fa-star"></i>}</div>
+                      <span className='space'></span>
+                      {!spot?.Reviews ? <span>New</span> : <span>{` ${spot?.Reviews?.length} `}</span>}
+                      </div>
                       <p className="spot-price">{`$${spot?.price} night`}</p>
                     </div>
                   </div>

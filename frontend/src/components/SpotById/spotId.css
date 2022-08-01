@@ -1,5 +1,88 @@
-.spotImgs {
-    max-width: 35%;
-    max-height: 35%;
-    object-fit: cover;
+.spotImgById {
+    width: 40%;
+    height: 40%;
+    
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 15px;
+    
   }
+
+
+
+  .imgPadding{
+    padding: 24px 0px 0px 40px;
+  }
+
+  .Description {
+    display: flex;
+    flex-direction: row;
+    margin: 8px 0px 0px;
+    padding: 0px 0px 0px 40px;
+
+  }
+
+  .SpotsDescription {
+     padding: 32px 0px 32px 40px;
+  }
+
+
+  .Header {
+    padding: 0px 0px 0px 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  .Header2 {
+    padding: 0px 0px 0px 40px;
+    border-bottom: .10px #D3D3D3 solid;
+    
+
+
+  }
+
+  .entireContainer {
+   
+    margin: 24px 160px 50px 40px;
+
+  }
+
+  .spotButtons{
+    
+   margin: 0px 10px  0px 10px;
+
+  }
+  
+
+  .spot-button {
+    background: linear-gradient(to bottom right, #e82855, #ce0e78);
+    color: white;
+    font-weight: 500;
+    height: 30px;
+    width: 80px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+.spot-button:hover {
+  cursor: pointer;
+  background: #e82855;
+
+}
+
+
+  .Reviews {
+    padding: 0px 0px 0px 40px;
+    border-top: .10px #D3D3D3 solid;
+    display: flex;
+    flex-direction: row;
+    gap: 500px;
+  }
+
+  .star{
+    
+    font-size: .90rem;
+    color: #FF385C
+  }
+

@@ -1,0 +1,15 @@
+.demoUserButton {
+    background: linear-gradient(to bottom right, #e82855, #ce0e78);
+    color: white;
+    font-weight: 500;
+    height: 30px;
+    width: 100px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.demoUserButton:hover {
+  cursor: pointer;
+  background: #e82855;
+
+}

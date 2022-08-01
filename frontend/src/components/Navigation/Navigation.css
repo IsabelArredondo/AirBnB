@@ -59,24 +59,20 @@
    gap: 10px;
 }
 
-#log_in_Button_div>div {
-   color: black;
-   font-size: 16px;
+
+.signUpBttn {
+   background: linear-gradient(to bottom right, #e82855, #ce0e78);
+   color: white;
    font-weight: 500;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   cursor: pointer;
+   height: 30px;
+   width: 100px;
+   border-radius: 5px;
 }
 
-#sign_up_link>a {
-   color: black;
-   font-size: 16px;
-   font-weight: 500;
-   height: 100%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
+.signUpBttn:hover {
+ cursor: pointer;
+ background: #e82855;
+
 }
 
 

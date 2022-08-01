@@ -47,7 +47,7 @@ function ProfileButton({ user }) {
               See Your Listings
             </Link>
             <Link to="/spot/createSpot" id="dropdown_third">
-              Host an Experience
+              Host your Home
             </Link>
           <div id="dropdown_last" onClick={logout}>Log Out</div>
         </div>

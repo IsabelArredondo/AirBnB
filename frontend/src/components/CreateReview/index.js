@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { createReview } from '../../store/reviews';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { findASpot} from "../../store/spots";
+import './newReview.css'
+
 
 
 const CreateReview = ({spotId1}) => {
@@ -21,8 +24,9 @@ const CreateReview = ({spotId1}) => {
         e.preventDefault()
         let validateErrors = [];
         if (review.length < 5) validateErrors.push('Review must be longer than 5 characters');
-        if (stars < 1) validateErrors.push('Please enter a rating')
-
+        if (review.length > 50) validateErrors.push('Review cannot be longer than 50 characters');
+        if (stars > 5 || stars <= 0) validateErrors.push('Please enter a valid rating')
+        
         if (validateErrors.length > 0) {
             setErrors(validateErrors);
             return;
@@ -37,36 +41,51 @@ const CreateReview = ({spotId1}) => {
             //history.push(`/spots/${spotId1}`);
             
               dispatch(createReview(newReview, spotId1))
+              dispatch(findASpot(spotId1))
             
-
+              setReview("");
+              setStars("");
+              setErrors([])
     }
     
 
 
     return (
+        <>
+
+        <div className="createReviewDiv">
+
         <form onSubmit={handleSubmit} className='createSpotForm' >
             <ul> {errors.map((error, i) => ( <li key={i}>{error}</li>))}</ul>
             <label>
-                Review:
-                <input
+                
+                Share your experience:
+                <textarea
+                
+                id="reviewInput"
                     type="text"
                     placeholder='Tell us how your stay was'
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
                     required
-                />
+                    />
+                
             </label>
             <label>
                 stars:
-                <input
+                <textarea
+                id="reviewInput"
                     type="text"
+                    placeholder='Give a this place 1/5 stars'
                     value={stars}
                     onChange={(e) => setStars(e.target.value)}
                     required
                 />
             </label>
-            <button  type="submit">Post your Review</button>
+            <button className='button' type="submit" >Post your Review</button>
         </form>
+        </div>
+         </>
     )
 }
 

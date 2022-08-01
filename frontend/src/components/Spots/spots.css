@@ -24,12 +24,7 @@
     margin: auto;
   }
   
-  /* .spotImg {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-  } */
+
 
   .spotImg {
     float: left;
@@ -47,10 +42,26 @@
     font-size: 1.3rem;
   }
   
+  .adressraiting {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+
+  }
+
+  .spot-price{
+    margin: 0px;
+  }
+
+  .review{
+    margin-left: 100px;
+}
+  
   .spot-info {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    margin-left: 30px;
   }
   
   .spot-rating {
@@ -74,7 +85,9 @@
   }
   
   .star-icon{
-    font-size: 1.1rem;
+    font-size: 1rem;
+    color: #FF385C
+    
   }
   
   .spot-link {

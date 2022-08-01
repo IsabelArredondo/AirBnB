@@ -140,7 +140,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
     review,
     stars,
   })
-   console.log('!!!!!!!!!!! new rev !!!!', newReview)
+   //console.log('!!!!!!!!!!! new rev !!!!', newReview)
   return res.json(newReview)
 })
 

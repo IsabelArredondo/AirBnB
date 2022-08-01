@@ -1,22 +1,21 @@
-// frontend/src/components/LoginFormModal/index.js
 import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
-import LoginForm from './LoginForm';
+import SignupFormPage from '../SignUpFormPage'
 import './LoginForm.css'
 
-function LoginFormModal() {
+function SignupFormModal() {
   const [showModal, setShowModal] = useState(false);
 
   return (
     <>
-      <button className='LogInBttn' onClick={() => setShowModal(true)}>Log In</button>
+      <button className='LogInBttn' onClick={() => setShowModal(true)}>Sign Up</button>
       {showModal && (
         <Modal onClose={() => setShowModal(false)}>
-          <LoginForm />
+          <SignupFormPage />
         </Modal>
       )}
     </>
   );
 }
 
-export default LoginFormModal;
+export default SignupFormModal;

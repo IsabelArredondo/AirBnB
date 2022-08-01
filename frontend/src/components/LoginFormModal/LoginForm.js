@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import './LoginForm.css'
 
 
 function LoginForm() {
@@ -15,40 +16,43 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    
+
     return dispatch(sessionActions.login({ email, password })).catch(
       async (res) => {
-        
+
         const data = await res.json();
         if (data && data.errors) setErrors(data.errors);
       }
     )
-    
+
   };
 
-  const demoUser = (e) => {
-    e.preventDefault();
-    setErrors([]);
-    setEmail('john.smith@gmail.com');
-    setPassword('secret password');
-    return dispatch(sessionActions.demoUsers()).catch(
-        async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-        }
-    );
-};
+  //   const demoUser = (e) => {
+  //     e.preventDefault();
+  //     setErrors([]);
+  //     setEmail('john.smith@gmail.com');
+  //     setPassword('secret password');
+  //     return dispatch(sessionActions.demoUsers()).catch(
+  //         async (res) => {
+  //             const data = await res.json();
+  //             if (data && data.errors) setErrors(data.errors);
+  //         }
+  //     );
+  // };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+
+    <form className="Login_form" onSubmit={handleSubmit}>
+      <h2>Log In</h2>
+      <ul className="Errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
       <label>
-        Username or Email
+        Email
         <input
+          className="input"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -58,14 +62,15 @@ function LoginForm() {
       <label>
         Password
         <input
+          className="input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button  type="submit">Log In</button>
-      <button type="submit" onClick={demoUser}>Demo User</button>
+      <button className="LogInBttn" type="submit">Log In</button>
+      {/* <button type="submit" onClick={demoUser}>Demo User</button> */}
     </form>
   );
 }

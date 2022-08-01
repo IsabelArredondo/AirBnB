@@ -1,0 +1,47 @@
+.all-reviews-div {
+    margin: 10px 10px 50px 20px;
+}
+
+
+.star {
+
+    font-size: .90rem;
+    color: #FF385C
+}
+
+.raitng {
+    display: flex;
+    flex-direction: row;
+}
+
+.review-button {
+    background: linear-gradient(to bottom right, #e82855, #ce0e78);
+    color: white;
+    font-weight: 500;
+    height: 30px;
+    width: 150px;
+
+    border-radius: 5px;
+}
+
+.review-button:hover {
+    cursor: pointer;
+    background: #e82855;
+
+}
+
+
+
+.space{
+    margin: 5px;
+}
+
+.starspace{
+    margin: 2px;
+}
+
+
+.userStars{
+    display: flex;
+    flex-direction: row;
+}

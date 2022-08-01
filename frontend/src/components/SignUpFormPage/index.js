@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
-import '../SignUpFormPage'
+import './Signup.css'
 
 function SignupFormPage() {
   const dispatch = useDispatch();
@@ -31,13 +31,16 @@ function SignupFormPage() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <ul>
+    <div className="form">
+      <h2>Sign Up!</h2>
+    <form className="signUpForm" onSubmit={handleSubmit}>
+      <ul id="sign_up_errors">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
       <label>
         Email
         <input
+          className="input"
           type="text"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -47,6 +50,7 @@ function SignupFormPage() {
       <label>
         First Name
         <input
+        className="input"
           type="text"
           value={firstName}
           onChange={(e) => setFirstName(e.target.value)}
@@ -56,6 +60,7 @@ function SignupFormPage() {
       <label>
         Last Name
         <input
+        className="input"
           type="text"
           value={lastName}
           onChange={(e) => setLastName(e.target.value)}
@@ -65,6 +70,7 @@ function SignupFormPage() {
       <label>
         Password
         <input
+        className="input"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
@@ -74,14 +80,16 @@ function SignupFormPage() {
       <label>
         Confirm Password
         <input
+        className="input"
           type="password"
           value={confirmPassword}
           onChange={(e) => setConfirmPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit">Sign Up</button>
+      <button className="signUp" type="submit">Sign Up</button>
     </form>
+    </div>
   );
 }
 

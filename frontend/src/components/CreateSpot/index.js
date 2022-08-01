@@ -3,6 +3,7 @@ import { createSpot, getAllSpots } from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
+import './createAspot.css'
 
 
 const CreateArea = () => {
@@ -68,28 +69,27 @@ const CreateArea = () => {
         <>
 
 
-            <div className='createListingPage'>
-                <h2> A new hosting journey starts here</h2>
-                <p>Every Experience idea is reviewed by a small team at Airbnb. If your idea meets quality standards, youll get to add dates and start hosting.</p>
+            <div className='createSpotPage'>
+                <h2> Your hosting journey starts here</h2>
 
                 <form
                     onSubmit={handleSubmit}
-                    className="createListingForm">
+                    className="createSpotForm">
                     <label>
                         <p>Create your title</p>
                         <input
                             type="text"
                             name="name"
                             value={name}
-                            placeholder="Lovely 3-bedroom vacation home
-                                 with pool"
+                            placeholder="Two bedroom home
+                                 near the water"
                             required={true}
                             onChange={(e) => setName(e.target.value)}
                         />
                     </label>
                     <label >
                         <p>Tell us about your place</p>
-                        <textarea
+                        <input
                             type="text"
                             name="description"
                             placeholder="description"
@@ -132,8 +132,7 @@ const CreateArea = () => {
                             onChange={(e) => setCountry(e.target.value)} />
                     </div>
                     <label>
-                        <p>Latitude</p>
-                        <span className="lat-long" onClick={() => setLat(40.74877717256489)}>Latitude</span>
+                        <p>Latitude:</p>
                         <input
                             type="number"
                             step="any"
@@ -144,9 +143,8 @@ const CreateArea = () => {
                             onChange={(e) => setLat(Number(e.target.value))} />
                     </label>
                     <label>
-                        <p>Longtitude</p>
+                        <p>Longtitude:</p>
 
-                        <span className="lat-long" onClick={() => setLng(-74.00541429173198)} >Longtitude</span>
                         <input
                             type="number"
                             step="any"
@@ -157,7 +155,7 @@ const CreateArea = () => {
                             onChange={(e) => setLng(Number(e.target.value))} />
                     </label>
                     <label>
-                      <p>PreviewImage</p>
+                      <p>Preview Image:</p>
                         <input
                             type="text"
                             placeholder='url'
@@ -167,7 +165,7 @@ const CreateArea = () => {
                         />
                     </label>
                     <label>
-                        <p>Price per night</p>
+                        <p>Price per night:</p>
 
                         <input
                             type="number"
@@ -179,7 +177,7 @@ const CreateArea = () => {
                             onChange={(e) => setPrice(Number(e.target.value))} />
                     </label>
                     {errors && errors.map((error, i) => <li key={i} className="error">{error}</li>)}
-                    <button type="submit" className="create_btn">Create</button>
+                    <button type="submit" className="create">Create</button>
                 </form>
 
             </div >

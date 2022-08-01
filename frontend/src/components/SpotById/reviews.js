@@ -2,6 +2,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {useParams} from 'react-router-dom'
 import {getAllReviewsBySpotId, reviewDelete} from '../../store/reviews'
+import { findASpot } from "../../store/spots";
+import './review.css'
+
+
 
 
 const Reviews = ({spotId, numReviews}) => {
@@ -25,6 +29,7 @@ const Reviews = ({spotId, numReviews}) => {
       e.preventDefault()
       await dispatch(reviewDelete(reviewId))
       await (dispatch(getAllReviewsBySpotId(spotId)))
+         dispatch(findASpot(spotId))
     }
 
     
@@ -38,16 +43,24 @@ const Reviews = ({spotId, numReviews}) => {
               return (
                 <div className='all-reviews-div' key={reviewState?.id}>
                 
-                <div>
-                <p className='stars'>{reviewState?.firstName} {reviewState?.lastName}</p>
-                <p className='user'>{`${reviewState?.stars} stars`} </p>
+                <div className="userStars">
+                <span className='user'>{reviewState?.firstName} {reviewState?.lastName}</span>
+                 <span className="space" >  </span>
+                <div className="raitng">
+                   <div className="star">{<i className="fas fa-star"></i>} </div>
+                   <span className="starspace" >  </span>
+                   <span className='stars'>{`${reviewState?.stars.toFixed(1)}`} </span>
+                </div>
+                </div>
+
+                  <div>
                     <p className='actual-review'>{reviewState?.review} </p>
 
                     {currentUser &&
                      currentUser?.id === reviewState?.userId && (
                       
-                      <div>
-                        <button onClick={removeReview(reviewState.id)}>Delete Review</button>
+                      <div className="removebutton">
+                        <button className="review-button" onClick={removeReview(reviewState.id)}>Delete Your Review</button>
                         
                       </div>
                     )}
