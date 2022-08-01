@@ -36,11 +36,11 @@ const CreateArea = () => {
         if (lat.length < 1 || lng.length < 1) validateErrors.push('Please include a latitude and longitude.');
         if (price.length < 1) {
             validateErrors.push('Please include price.')
-        } else if (price.length > 0) {
+        } 
             if (Number(price) === 0) {
                 validateErrors.push('Price must be more than $0')
             }
-        }
+        
         if (validateErrors.length > 0) {
             setErrors(validateErrors);
             return;
@@ -65,6 +65,9 @@ const CreateArea = () => {
 
     }
 
+
+
+
     return (
         <>
 
@@ -72,9 +75,18 @@ const CreateArea = () => {
             <div className='createSpotPage'>
                 <h2> Your hosting journey starts here</h2>
 
+
                 <form
+
                     onSubmit={handleSubmit}
                     className="createSpotForm">
+                    {errors ?? (
+                        <ul>
+                            {errors.map((error, idx) => (
+                                <li key={idx}>{error}</li>
+                            ))}
+                        </ul>
+                    )}
                     <label>
                         <p>Create your title</p>
                         <input
@@ -155,7 +167,7 @@ const CreateArea = () => {
                             onChange={(e) => setLng(Number(e.target.value))} />
                     </label>
                     <label>
-                      <p>Preview Image:</p>
+                        <p>Preview Image:</p>
                         <input
                             type="text"
                             placeholder='url'
@@ -176,7 +188,6 @@ const CreateArea = () => {
                             value={price}
                             onChange={(e) => setPrice(Number(e.target.value))} />
                     </label>
-                    {errors && errors.map((error, i) => <li key={i} className="error">{error}</li>)}
                     <button type="submit" className="create">Create</button>
                 </form>
 

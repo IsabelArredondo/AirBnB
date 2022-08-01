@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { updateListing, findASpot } from '../../store/spots'
-
+import './editSpot.css'
 
 const EditSpot = () => {
     const dispatch = useDispatch();
@@ -82,14 +82,17 @@ const EditSpot = () => {
 
 
     return (
-        <form onSubmit={handleSubmit} className='createSpotForm'>
+        <div className='createSpotPage1'>
+        <h2 className='create-title-name' >Need to Update Your Spot?</h2>
+
+        <form onSubmit={handleSubmit} className='createSpotForm1'>
             <ul>
                 {errors.map((error, id) => (
                     <li key={id}>{error}</li>
                 ))}
             </ul>
-            <label>
-                Address:
+            <label className="label">
+               <p>Address:</p> 
                 <input
                 type="text"
                 placeholder='Address'
@@ -98,8 +101,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                City:
+            <label className="label">
+                <p>City:</p>
                 <input
                 type="text"
                 placeholder='City'
@@ -108,8 +111,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                State:
+            <label className="label">
+                <p>State:</p>
                 <input
                 type="text"
                 placeholder='State'
@@ -118,8 +121,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Country:
+            <label className="label">
+               <p>Country:</p>
                 <input
                 type="text"
                 placeholder='country'
@@ -128,8 +131,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Latitude:
+            <label className="label">
+                <p>Latitude:</p>
                 <input
                 type="text"
                 placeholder='lat'
@@ -138,8 +141,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Longitude:
+            <label className="label">
+               <p>Longitude:</p> 
                 <input
                 type="text"
                 placeholder='lng'
@@ -148,8 +151,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Name:
+            <label className="label">
+              <p>Name:</p>  
                 <input
                 type="text"
                 placeholder='name'
@@ -158,8 +161,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Description:
+            <label className="label">
+                 <p>Description:</p>
                 <input
                 type="text"
                 placeholder='description'
@@ -168,8 +171,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Preview Image:
+            <label className="label">
+               <p>Preview Image:</p> 
                 <input
                 type="text"
                 placeholder='Preview Image'
@@ -178,8 +181,8 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <label>
-                Price:
+            <label className="label">
+               <p>Price:</p> 
                 <input
                 type="text"
                 placeholder='Price'
@@ -188,8 +191,9 @@ const EditSpot = () => {
                 required
                 />
             </label>
-            <button type="submit">Edit Spot</button>
+            <button className='create' type="submit">Edit Spot</button>
         </form>
+        </div >
     )
 }
 

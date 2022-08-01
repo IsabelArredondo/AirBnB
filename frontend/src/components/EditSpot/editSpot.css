@@ -1,8 +1,8 @@
-.createSpotPage1 {
+.createSpotPage {
     margin-top: 50px;
     border: #D3D3D3 1.5px solid;
     border-radius: 20px;
-    margin-left: 200px;
+    margin-left: 360px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -11,17 +11,13 @@
     width: 60%;
 }
 
-.error {
-    width: 100%;
-}
-
-.createSpotPage1>h2 {
+.createSpotPage>h2 {
     font-weight: 500;
     font-size: 55px;
-    
+
 }
 
-.createSpotPage1>p {
+.createSpotPage>p {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -31,8 +27,13 @@
     letter-spacing: .5px;
 }
 
+.label {
+    display: flex;
+    flex-direction: column;
+}
 
-.createSpotForm1 {
+
+.createSpotForm {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -40,21 +41,22 @@
     gap: 20px;
 }
 
-.createSpotForm1>label>input,
-.createSpotForm1>label {
+.createSpotForm>label>input,
+.createSpotForm>label {
     width: 100%;
 }
 
 
-.createSpotForm1>label>p {
+.createSpotForm>label>p {
     font-weight: 500;
     font-size: 22px;
     margin-bottom: 10px;
     width: 100%;
 }
 
-.createSpotForm1>label>input {
+.createSpotForm>label>input {
     height: 40px;
+    border: #D3D3D3 1.5px solid;
     width: 100%;
     border-radius: 5px;
     color: black;
@@ -64,6 +66,10 @@
     height: 50px;
 }
 
+.create-title-name {
+    margin-top: 5%;
+    margin-bottom: -5%;
+}
 
 .address {
     display: flex;
@@ -82,7 +88,7 @@
 }
 
 
-.create {
+.editbutton28376 {
     background: linear-gradient(to bottom right,
     #e82855, #ce0e78);
     color: white;
@@ -91,9 +97,10 @@
     width: 50%;
     margin: 15px;
     border-radius: 10px;
+    margin-bottom: 5%;
 }
 
-.create:hover {
+.editbutton28376:hover {
     cursor: pointer;
     background-color: #E5204D;
 }
