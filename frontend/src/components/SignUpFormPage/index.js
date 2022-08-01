@@ -37,7 +37,7 @@ function SignupFormPage() {
       <ul id="sign_up_errors">
         {errors.map((error, idx) => <li key={idx}>{error}</li>)}
       </ul>
-      <label>
+      <label className="Label">
         Email
         <input
           className="input"
