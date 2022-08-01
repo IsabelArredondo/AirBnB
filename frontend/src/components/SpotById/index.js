@@ -13,8 +13,11 @@ const SpotDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory()
 
-  const currentUser = useSelector((state) => state.session);
+  const currentUser = useSelector((state) => state.session.user);
+  console.log("THIS IS CURRENT USER", currentUser)
   const spots = useSelector((state) => (state.spots[spotId]));
+  console.log("THIS IS CURRENT SPOTS", spots)
+
 
 
 
@@ -75,24 +78,8 @@ const SpotDetails = () => {
         </div>
         <div className="SpotsDescription">{spots?.description}</div>
 
-        {/* <div className="deleteAndEditSpot">
-        {currentUser &&
-          currentUser?.user &&
-          currentUser?.user.id && spots.id === spots?.ownerId && (
-            <div>
-              <button onClick={removeSpot}>Delete Spot</button>
-              <button onClick={editSpot}>Edit Spot</button>
-            </div>
-          )}
-      </div> */}
-
-
-
-
+        
         <div className="Reviews">
-
-         
-
           <div className="reviewtwo">
             <h1>Reviews</h1>
 
@@ -101,13 +88,10 @@ const SpotDetails = () => {
 
           <div className="reviewone">
             
-          {currentUser &&
-          currentUser.user &&
-          currentUser.user.id !== spots.ownerId && ( 
-              
+          
                 <CreateReview spotId1={spotId} />
               
-            )}
+            
           </div>
 
         </div>
