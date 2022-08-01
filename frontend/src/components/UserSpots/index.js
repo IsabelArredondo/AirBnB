@@ -25,9 +25,6 @@ const UserSpots = () => {
         dispatch(getAllSpots());
     }, [dispatch, JSON.stringify(allspots)])
 
-   
-
-
     return (
         <>
           <div className="all-spots-div" >
