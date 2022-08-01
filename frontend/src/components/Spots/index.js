@@ -33,7 +33,7 @@ const Spots = () => {
                       <span className='space'></span>
                       <div className="star">{<i className="fas fa-star"></i>}</div>
                       <span className='space'></span>
-                      {!spot?.Reviews ? <span>New</span> : <span>{` ${spot?.Reviews?.length} `}</span>}
+                      {spot?.Reviews?.length === 0 ? <span>New</span> : <span>{` ${spot?.Reviews?.length} `}</span>}
                       </div>
                       <p className="spot-price">{`$${spot?.price} night`}</p>
                     </div>
