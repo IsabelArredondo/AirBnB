@@ -23,7 +23,7 @@ const UserSpots = () => {
    
     useEffect(() => {
         dispatch(getAllSpots());
-    }, [dispatch])
+    }, [dispatch, JSON.stringify(allspots)])
 
    
 
