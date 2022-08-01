@@ -16,13 +16,12 @@ const SpotDetails = () => {
   const currentUser = useSelector((state) => state?.session);
   const spots = useSelector((state) => (state?.spots[spotId]));
 
-  //console.log('SPOTS OWNER',spots.ownerId)
 
 
   useEffect(() => {
     dispatch(findASpot(spotId));
     dispatch(getAllReviewsBySpotId(spotId))
-  }, [dispatch, spotId]);
+  }, [dispatch, spotId, JSON.stringify(spots)]);
 
   const images = spots?.Images
 
