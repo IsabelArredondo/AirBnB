@@ -15,11 +15,9 @@ const Reviews = ({spotId}) => {
      const reviewsVariable = useSelector((state) => Object.values(state.reviews))
 
      const userReviews =  reviewsVariable.filter(review => review?.userId === currentUser?.id);
-    //  console.log("THIS IS CURRENT USER", currentUser.id)
-    //  console.log("userReviews", userReviews)
-    //  console.log("reviewsVariable", reviewsVariable)
-
+   
     useEffect(() => {
+      // dispatch(findASpot(spotId));
       dispatch(getAllReviewsBySpotId(spotId));
      }, [dispatch, spotId])
     
@@ -37,9 +35,8 @@ const Reviews = ({spotId}) => {
    
     return (
         <>
-          {reviewsVariable.map((reviewState, i) => {
-            //  if (spotId === reviewState?.spotId) {
-              //console.log(reviewState)
+          {reviewsVariable.map((reviewState) => {
+        
               return (
                 <div className='all-reviews-div' key={reviewState?.id}>
                 
@@ -49,7 +46,7 @@ const Reviews = ({spotId}) => {
                 <div className="raitng">
                    <div className="star">{<i className="fas fa-star"></i>} </div>
                    <span className="starspace" >  </span>
-                   <span className='stars'>{`${reviewState?.stars.toFixed(1)}`} </span>
+                   <span className='stars'>{`${reviewState?.stars?.toFixed(1)}`} </span>
                 </div>
                 </div>
 
