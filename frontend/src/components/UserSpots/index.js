@@ -32,7 +32,7 @@ const UserSpots = () => {
         <>
           <div className="all-spots-div" >
           {userSpots.map((spot) => (
-                <Link to={`/spots/${spot?.id}`} className="spot-link" key={spot?.id}>
+                <Link to={`/getspots/${spot?.id}`} className="spot-link" key={spot?.id}>
 
 
                   <div className={`spot-div spot-div`}>
