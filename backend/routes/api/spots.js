@@ -101,7 +101,7 @@ router.get('/', async (req, res) => {
 
 
 //find all spots by id 
-router.get('/:id(\\d+)', async (req, res) => {
+router.get('/:id', async (req, res) => {
   const spots = await Spot.findByPk(req.params.id, {
     include: [
       {

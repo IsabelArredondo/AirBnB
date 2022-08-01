@@ -94,7 +94,7 @@ router.post('/:spotId', requireAuth, validateSpots, async (req, res) => {
   const firstName = req.user.firstName
   const lastName = req.user.lastName
   
-  console.log('FIRST NAME',req.user.firstName)
+  //console.log('FIRST NAME',req.user.firstName)
   const spot = await Spot.findOne({
       where: { id: spotId}
   })
