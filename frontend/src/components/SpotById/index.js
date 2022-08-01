@@ -47,7 +47,7 @@ const SpotDetails = () => {
         <div className="Header"><h1>Explore {spots?.name}</h1>
 
           <div className="spotButtons">
-            {currentUser ? <> {currentUser?.user?.id === spots?.ownerId && <div>
+            {currentUser ? <> {currentUser?.id === spots?.ownerId && <div>
               <button
                 className="spot-button"
                 onClick={editSpot}>Edit</button>
@@ -86,12 +86,15 @@ const SpotDetails = () => {
             <Reviews spotId={spotId} numReviews={numReviews} />
           </div>
 
+
           <div className="reviewone">
-            
+          {
+          currentUser &&
+          currentUser.id !== spots.ownerId && (
           
                 <CreateReview spotId1={spotId} />
               
-            
+                )}
           </div>
 
         </div>
