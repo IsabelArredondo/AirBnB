@@ -13,14 +13,14 @@ const SpotDetails = () => {
   const dispatch = useDispatch();
   const history = useHistory()
 
-  const currentUser = useSelector((state) => state?.session);
-  const spots = useSelector((state) => (state?.spots[spotId]));
+  const currentUser = useSelector((state) => state.session);
+  const spots = useSelector((state) => (state.spots[spotId]));
 
 
 
   useEffect(() => {
     dispatch(findASpot(spotId));
-    dispatch(getAllReviewsBySpotId(spotId))
+    // dispatch(getAllReviewsBySpotId(spotId))
   }, [dispatch, spotId, JSON.stringify(spots)]);
 
   const images = spots?.Images
@@ -103,7 +103,7 @@ const SpotDetails = () => {
             
           {currentUser &&
           currentUser.user &&
-          currentUser.user.id !== spots?.ownerId && ( 
+          currentUser.user.id !== spots.ownerId && ( 
               
                 <CreateReview spotId1={spotId} />
               

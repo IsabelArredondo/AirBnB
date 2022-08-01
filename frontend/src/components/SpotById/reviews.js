@@ -8,11 +8,11 @@ import './review.css'
 
 
 
-const Reviews = ({spotId, numReviews}) => {
+const Reviews = ({spotId}) => {
     const dispatch = useDispatch();
      const currentUser = useSelector((state) => state.session.user);
      
-     const reviewsVariable = useSelector((state) => Object.values(state?.reviews))
+     const reviewsVariable = useSelector((state) => Object.values(state.reviews))
 
      const userReviews =  reviewsVariable.filter(review => review?.userId === currentUser?.id);
     //  console.log("THIS IS CURRENT USER", currentUser.id)
