@@ -22,13 +22,16 @@
    width: 20%;
    display: flex;
    align-items: center;
-   justify-content: center;
+   margin-left: 5%;
 }
 
-#logo_div>a>img {
-   height: 50px;
-}
 
+
+.logo{
+   width: 102px;
+   height: 32px;
+   
+}
 
 #nav_right_div {
    display: flex;

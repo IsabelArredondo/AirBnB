@@ -1,59 +1,199 @@
 .LogInBttn {
+  
+    /* background: rgb(255,56,92);
+    background: radial-gradient(circle, rgba(255,56,92,1) 0%, rgba(230,30,77,1) 28%, rgba(255,28,95,1) 40%, rgba(215,4,102,1) 58%, rgba(189,30,89,1) 76%, rgba(189,30,89,1) 100%); */
     background: linear-gradient(to bottom right, #e82855, #ce0e78);
-    color: white;
-    font-weight: 500;
-    height: 30px;
-    width: 90px;
-    /* margin-left: 10px; */
-    margin-bottom: 10px;
-    border-radius: 5px;
+    border: transparent;
     font-family: 'Circular','BlinkMacSystemFont','Roboto','Helvetica Neue',sans-serif;
+    border-radius: 10px;
+    font-size: 17px;
+    margin: 7px 0px;
+    width: 100%;
+    height: 48px;
+    color: white;
+}
+.LogInBttn:hover {
+  cursor: pointer;
+  background: #e82855;
+}
+.closecontainer{
+  border-bottom: #B2B2B2 1.5px solid;
+  padding: 0px 20px;
+  display: flex;
+  height: 63px;
+}
+.orbox{
+  
+  width: 100%;
+  height: 13px;
+  margin: 16px 0px;
+  display: flex;
+}
+
+.or{
+  text-align: center;
+  width: 8%;
+  height: 13px;
+  font-size: 10px;
+  
+  color: #a8a6a6;
+}
+.orboxone{
+  width: 50%;
+  height: 6.5px;
+  
+  border-bottom: solid .5px #B2B2B2;
+}
+.orboxtwo{
+  width: 50%;
+  
+  height: 6.5px;
+  border-bottom: solid .5px #B2B2B2;
+}
+.welcome{
+  font-size: 22px;
+  font-family: 'Circular', 'sans-serif';
+  margin: 16px 0px;
+  color: rgb(34, 34, 34)
 
 }
 
 .LogInBttn:hover {
   cursor: pointer;
-  background: #e82855;
+  
 
 }
 
-.Errors{
+#demo{
+background: none;
+color: rgb(34, 34, 34);
+border: 1px solid rgb(34, 34, 34);
+font-size: 14px;
+}
+#git{
+background: none;
+color: rgb(34, 34, 34);
+border: 1px solid rgb(34, 34, 34);
+font-size: 14px;
+text-decoration: none;
+}
+.demobutton{
+  display: flex;
+  padding: 8px;
+  margin-left: 2.1%;
+}
+.gitbutton{
+  display: flex;
+  padding: 12px;
+  margin-left: 2.5%;
+}
+#demotext{
+  display: flex;
+  
+  align-self: center;
+  
+  margin-left: 26%;
+}
+.faceprofile{
+  background-color: rgb(152, 169, 251);
+  font-size: 15px;
+  border-radius: 50%;
+  padding: 2px;
+  color: rgb(250, 247, 247);
+  text-align: center;
+  width: 24px;
+  height: 24px;
+}
+.fa-github{
+  background-color: #050505;
+  font-size: 15px;
+  border-radius: 50%;
+  padding: 5px;
+  color: rgb(250, 247, 247);
+  text-align: center;
+}
+.fa-linkedin-in{
+  background-color: #1666C2;
+  font-size: 15px;
+  border-radius: 50%;
+  padding: 5px;
+  color: rgb(250, 247, 247);
+  text-align: center;
+}
+.fa-airbnb{
+  background-color: #ED3B5A;
+    font-size: 15px;
+    border-radius: 50%;
+    padding: 5px;
+    color: white;
+    text-align: center;
+    width: 15px;
+}
+/* .Errors{
 height: 35px;
 width: 90%;
-}
+} */
 
 .Login_form {
-  margin-top: 10px;
-  margin-bottom: 10px;
-  border: #D3D3D3 1.5px solid;
+  
+  /* border: #D3D3D3 1.5px solid; */
+  background-color: transparent;
   border-radius: 20px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 50%;
+  align-items: flex-start;
+  width: 518px;
+  /* height: 570px; */
+  padding: 24px;
+  padding-top: 0px
 }
+.logandsignheader{
+  font-family: 'Circular', 'sans-serif';
+  font-size: 16px;
+  align-self: center;
+  font-weight: bold;
+  margin-left: 30%;
 
+}
+.buttonclose{
+  width: 32px;
+  height: 32px;
+  font-size: 13px;
+  align-self: center;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.buttonclose:hover{
+  border-radius: 50%;
+  background-color: #f1ededed;
+}
+.fa-x{
+color: rgb(34, 34, 34);
+}
 .input {
-  height: 40px;
-  border: #D3D3D3 1.5px solid;
-  width: 100%;
+  height: 16px;
+  border: #B2B2B2 1.5px solid;
+  width: 460px;
   border-radius: 5px;
-  color: black;
-  margin-bottom: 40px;
+  color: #B2B2B2;
+  
 
 }
+.policy{
+  font-size: 13.5px;
+  color: rgb(34, 34, 34);
+  margin: 10px 3px 19px;
+  font-family: 'Circular', 'sans-serif';
+}
+#email{
+  padding: 26px 36px 10px 12px;
+  border-radius: 9px 9px 0px 0px;
+}
 
-/* #modal-content {
-  margin-top: 50px;
-  border: #D3D3D3 1.5px solid;
-  border-radius: 20px;
-  margin-left: 250px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 50%;
-} */
+#password{
+  padding: 20px 36px 16px 12px;
+  border-top: none;
+  border-radius: 0px 0px 9px 9px;
+}
+

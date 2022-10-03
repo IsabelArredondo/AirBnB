@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { createSpot, getAllSpots } from '../../store/spots';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { Link, } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import './createAspot.css'
 
@@ -70,7 +71,17 @@ const CreateArea = () => {
 
     return (
         <>
+            <div className='createcontainerspot'>
+                
+                <div className='creategraphic'>
+                <Link to={`/`} className="spot-link" ><i className="fa-brands fa-airbnb" id='createspot'></i> </Link>
 
+                    
+                
+                    <h1 className='wwx'>Welcome Back,   {`${sessionUser.firstName}`}</h1>
+                    
+                    
+                </div>
 
             <div className='createSpotPage'>
                 <h2> Your hosting journey starts here</h2>
@@ -112,6 +123,7 @@ const CreateArea = () => {
                         <p>Where's your place located?</p>
                         <input
                             type="text"
+                            id='location'
                             name="address"
                             placeholder="address"
                             value={address}
@@ -192,6 +204,7 @@ const CreateArea = () => {
                 </form>
 
             </div >
+            </div>
 
 
         </>

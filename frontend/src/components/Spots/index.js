@@ -9,6 +9,8 @@ const Spots = () => {
    
 
     const allspots = useSelector((state) => Object.values(state.spots));
+
+    console.log(allspots)
     
     useEffect(() => {
         dispatch(getAllSpots());
@@ -22,7 +24,7 @@ const Spots = () => {
                 <Link to={`/getspots/${spot?.id}`} className="spot-link" key={spot?.id}>
 
 
-                  <div className={`spot-div spot-div`}>
+                  <div className='spot-div'>
                     <div className="img-div">
                       <img className="spotImg" src={spot?.previewImage} alt='pre-img'/> 
                     </div>
@@ -31,10 +33,13 @@ const Spots = () => {
                       <div className='adressraiting'>
                       <p className="spot-city-state">{`${spot?.city}, ${spot?.state}`}</p>
                       <span className='space'></span>
-                      <div className="star">{<i className="fas fa-star"></i>}</div>
+                      
+                      <div className="star"><i className="fas fa-star"></i>
                       <span className='space'></span>
                       {spot?.Reviews?.length === 0 ? <span>New</span> : <span>{` ${spot?.Reviews?.length} `}</span>}
                       </div>
+                      </div>
+
                       <p className="spot-price">{`$${spot?.price} night`}</p>
                     </div>
                   </div>

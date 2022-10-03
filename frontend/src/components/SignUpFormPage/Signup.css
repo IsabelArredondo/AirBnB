@@ -1,58 +1,43 @@
 .signUp {
-    background: linear-gradient(to bottom right, #e82855, #ce0e78);
-    color: white;
-    font-weight: 500;
-    height: 30px;
-    width: 150px;
-    gap: 5px;
-    border-radius: 5px;
-    font-family: 'Circular','BlinkMacSystemFont','Roboto','Helvetica Neue',sans-serif;
-
+  background: linear-gradient(to bottom right, #e82855, #ce0e78);
+  border: transparent;
+  font-family: 'Circular','BlinkMacSystemFont','Roboto','Helvetica Neue',sans-serif;
+  border-radius: 10px;
+  font-size: 17px;
+  margin: 7px 0px;
+  width: 98%;
+  height: 48px;
+  color: white;
+  align-self: center;
 }
 
 .signUp:hover {
   cursor: pointer;
   background: #e82855;
-  
-
-
 }
-
-.signUpForm {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+#midile{
+  padding: 20px 36px 16px 12px;
+  border-top: none;
   
+  border-radius: 0px 0px 0px 0px;
 }
-
-/* #modal-content>h2 {
-  font-weight: 500;
-  font-size: 25px;
-  flex-direction: row;
-  display: flex;
-  justify-content: center;
-  color: #ce0e78;
-} */
-
-
 .input {
-  height: 20px;
-  border: #D3D3D3 1.5px solid;
-  width: 100%;
+  height: 16px;
+  border: #B2B2B2 1.5px solid;
+  width: 460px;
   border-radius: 5px;
-  color: black;
+  color: #B2B2B2;
 }
+
+.welcome{
+  font-size: 22px;
+}
+
 
 #modal-content {
-  margin-top: 50px;
   border: #D3D3D3 1.5px solid;
   border-radius: 20px;
-  margin-left: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 50%;
 }

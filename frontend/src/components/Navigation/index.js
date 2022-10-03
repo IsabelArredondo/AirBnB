@@ -3,12 +3,9 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
-import LoginFormModal from '../LoginFormModal';
-import SignupFormModal from '../LoginFormModal/signUpModal';
+import logoImage from '../../Images/airbnbLogo.svg'
 import './Navigation.css';
-// import LoginForm from '../LoginFormModal/LoginForm';
-import DemoUser from '../DemoUser';
-import { signup } from '../../store/session';
+
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -17,35 +14,35 @@ function Navigation({ isLoaded }) {
 
 
   let sessionLinks;
-  if (sessionUser) {
+  // if (sessionUser) {
     sessionLinks = (
       <div id="nav_right_div">
         <ProfileButton user={sessionUser} />
       </div>
     );
-  } else {
-    sessionLinks = (
+  // } else {
+  //   sessionLinks = (
 
-      <div id="nav_right_div">
-        <DemoUser />
-        <div id="log_in_Button_div">   <LoginFormModal /></div>
-        <div>   <SignupFormModal /></div>
+  //     <div id="nav_right_div">
+  //       {/* <DemoUser />
+  //       <div id="log_in_Button_div">   <LoginFormModal /></div>
+  //       <div>   <SignupFormModal /></div> */}
 
         
-        {/* <button className='signUpBttn' onClick={signUp}>Sign  Up</button> */}
+  //       {/* <button className='signUpBttn' onClick={signUp}>Sign  Up</button> */}
+  //       <ProfileButton  user={null}/>
 
 
-
-      </div>
-    );
-  }
+  //     </div>
+  //   );
+  // }
 
   return (
     <nav>
       <div id="navBar">
         <div id='logo_div'>
           <NavLink exact to="/">
-            <img src="https://1000logos.net/wp-content/uploads/2017/08/Airbnb-logo.jpg"></img>
+            <img className='logo' src={logoImage}></img>
           </NavLink>
         </div>
         {isLoaded && sessionLinks}

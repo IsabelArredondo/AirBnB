@@ -2,12 +2,15 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, Redirect, useParams } from 'react-router-dom';
 import { updateListing, findASpot } from '../../store/spots'
+import { Link, } from 'react-router-dom';
+
 import './editSpot.css'
 
 const EditSpot = () => {
     const dispatch = useDispatch();
     const history = useHistory()
-    
+    const sessionUser = useSelector((state) => state.session.user);
+
     let { id } = useParams()
     id = Number(id)
     //console.log('THIS IS A PARAM', id)
@@ -16,8 +19,8 @@ const EditSpot = () => {
 
     useEffect(() => {
         dispatch(findASpot(id));
-        
-      }, [dispatch, id]);
+
+    }, [dispatch, id]);
 
     const [address, setAddress] = useState(spot.address)
     const [city, setCity] = useState(spot.city)
@@ -46,7 +49,7 @@ const EditSpot = () => {
     const updatePreviewImage = (e) => setPreviewImage(e.target.value);
 
     //if (!user) return <Redirect to="/" />;
-    if (submitted) return <Redirect to={`/`}/>
+    if (submitted) return <Redirect to={`/`} />
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -69,130 +72,155 @@ const EditSpot = () => {
         //history.push(`/`)
         return dispatch(updateListing(editedSpot, spot.id))
 
-        .then(async (res) => {
-            //console.log("success");
-            setSubmitted(true);
-          })
-        .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
-          });
-      };
+            .then(async (res) => {
+                //console.log("success");
+                setSubmitted(true);
+            })
+            .catch(async (res) => {
+                const data = await res.json();
+                if (data && data.errors) setErrors(data.errors);
+            });
+    };
 
 
 
     return (
-        <div className='createSpotPage1'>
-        <h2 className='create-title-name' >Need to Update Your Spot?</h2>
+        <div className='createcontainerspot'>
+            <div className='creategraphic'>
+                <Link to={`/`} className="spot-link" ><i className="fa-brands fa-airbnb" id='createspot'></i> </Link>
+                <h2 className='wwx' >Need to Update Your Spot, {`${sessionUser.firstName}`}?</h2>
+            </div>
 
-        <form onSubmit={handleSubmit} className='createSpotForm1'>
-            <ul>
-                {errors.map((error, id) => (
-                    <li key={id}>{error}</li>
-                ))}
-            </ul>
-            <label className="label">
-               <p>Address:</p> 
-                <input
-                type="text"
-                placeholder='Address'
-                value={address}
-                onChange={updateAddress}
-                required
-                />
-            </label>
-            <label className="label">
-                <p>City:</p>
-                <input
-                type="text"
-                placeholder='City'
-                value={city}
-                onChange={updateCity}
-                required
-                />
-            </label>
-            <label className="label">
-                <p>State:</p>
-                <input
-                type="text"
-                placeholder='State'
-                value={state}
-                onChange={updateState}
-                required
-                />
-            </label>
-            <label className="label">
-               <p>Country:</p>
-                <input
-                type="text"
-                placeholder='country'
-                value={country}
-                onChange={updateCountry}
-                required
-                />
-            </label>
-            <label className="label">
-                <p>Latitude:</p>
-                <input
-                type="text"
-                placeholder='lat'
-                value={lat}
-                onChange={updateLat}
-                required
-                />
-            </label>
-            <label className="label">
-               <p>Longitude:</p> 
-                <input
-                type="text"
-                placeholder='lng'
-                value={lng}
-                onChange={updateLng}
-                required
-                />
-            </label>
-            <label className="label">
-              <p>Name:</p>  
-                <input
-                type="text"
-                placeholder='name'
-                value={name}
-                onChange={updateName}
-                required
-                />
-            </label>
-            <label className="label">
-                 <p>Description:</p>
-                <input
-                type="text"
-                placeholder='description'
-                value={description}
-                onChange={updateDescription}
-                required
-                />
-            </label>
-            <label className="label">
-               <p>Preview Image:</p> 
-                <input
-                type="text"
-                placeholder='Preview Image'
-                value={previewImage}
-                onChange={updatePreviewImage}
-                required
-                />
-            </label>
-            <label className="label">
-               <p>Price:</p> 
-                <input
-                type="text"
-                placeholder='Price'
-                value={price}
-                onChange={updatePrice}
-                required
-                />
-            </label>
-            <button className='create' type="submit">Edit Spot</button>
-        </form>
+
+            <form onSubmit={handleSubmit} className='createSpotPage'>
+            {errors ?? (
+                <ul>
+
+                    {errors.map((error, id) => (
+                        <li key={id}>{error}</li>
+                    ))}
+                </ul> 
+)}
+                 <label className="editlabel">
+                    <p>Name</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='name'
+                        value={name}
+                        onChange={updateName}
+                        required
+                    />
+                </label> 
+                <label className="editlabel">
+                    <p>Description</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='description'
+                        value={description}
+                        onChange={updateDescription}
+                        required
+                    />
+                </label>
+                <label className="editlabel">
+                    <p>Address</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='Address'
+                        value={address}
+                        onChange={updateAddress}
+                        required
+                    />
+                </label>
+
+                <div className="editadress" >
+                <label className="editlabel">
+                    <input
+                    id='location'
+                    className="label"
+                        type="text"
+                        placeholder='City'
+                        value={city}
+                        onChange={updateCity}
+                        required
+                    />
+                </label>
+                <label className="editlabel">
+                    
+                    <input
+                    id='location'
+                        className="label"
+                        type="text"
+                        placeholder='State'
+                        value={state}
+                        onChange={updateState}
+                        required
+                    />
+                </label>
+                <label className="editlabel">
+                    
+                    <input
+                    id='location'
+                        className="label"
+                        type="text"
+                        placeholder='country'
+                        value={country}
+                        onChange={updateCountry}
+                        required
+                    />
+                </label>
+                </div>
+
+                <label className="editlabel">
+                    <p>Latitude</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='lat'
+                        value={lat}
+                        onChange={updateLat}
+                        required
+                    />
+                </label>
+                <label className="editlabel">
+                    <p>Longitude</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='lng'
+                        value={lng}
+                        onChange={updateLng}
+                        required
+                    />
+                </label>
+
+   
+                <label className="editlabel">
+                    <p>Preview Image</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='Preview Image'
+                        value={previewImage}
+                        onChange={updatePreviewImage}
+                        required
+                    />
+                </label>
+                <label className="editlabel">
+                    <p>Price</p>
+                    <input
+                        className="label"
+                        type="text"
+                        placeholder='Price'
+                        value={price}
+                        onChange={updatePrice}
+                        required
+                    />
+                </label>
+                <button className='editcreate' type="submit">Edit Spot</button>
+            </form>
         </div >
     )
 }

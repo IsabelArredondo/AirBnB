@@ -1,16 +1,32 @@
 .spotImgById {
-    width: 40%;
-    height: 40%;
-    
-    border-top-left-radius: 20px;
-    border-bottom-left-radius: 15px;
-    
+  width: 530px;
+  height: 409px;
+  border-top-left-radius: 15px;
+  border-bottom-left-radius: 15px;
+  height: 415px;  
   }
-
-
-
+.rightImg{
+  width: 252px;
+  height: 205px;
+}
+#onespot{
+margin: 0px;
+}
+.imgboxes{
+  width: 252px;
+}
+#toplastright{
+  border-top-right-radius: 15px;
+}
+#bottomlastright{
+  border-bottom-right-radius: 15px;
+}
   .imgPadding{
-    padding: 24px 0px 0px 40px;
+    padding: 16px 40px;
+    width: 1041px;
+    height: 434px;
+    display: flex;
+    gap: 5px;
   }
 
   .Description {
@@ -18,26 +34,75 @@
     flex-direction: row;
     margin: 8px 0px 0px;
     padding: 0px 0px 0px 40px;
+    color: #222222;
+
 
   }
-
+  .air{
+    width: 123px;
+    height: 26px;
+    
+  }
+.learnmore{
+  text-decoration: underline;
+  border: transparent;
+  background-color: transparent;
+  padding: 0px;
+  cursor: pointer;
+}
+.bookingprotection{
+  width: 863px;
+  height: 442px;
+  padding: 0px 40px 48px;
+}
   .SpotsDescription {
      padding: 32px 0px 32px 40px;
+     color: #222222;
+
   }
+.Spotspoliciy{
+  padding: 32px 0px 32px 40px;
+  color: #222222;
+  border-bottom: .10px #D3D3D3 solid;
+}
+#inside{
+  padding: 8px 0px 1px 0px;
+}
+.paragraph{
+  color: #717171;
+  margin-bottom: 24px;
+}
+#h3{
+  margin-bottom: 8px;
+  margin-top: 24px;
+}
+.close{
+  width: 96%;
+  height: 64px;
+  padding: 0px 24px;
+  display: flex;
+}
+#policyclose{
+  background-color: transparent;
+  border: transparent;
+  cursor: pointer;
 
-
+}
   .Header {
     padding: 0px 0px 0px 40px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    color: #222222;
+
 
   }
 
   .Header2 {
     padding: 0px 0px 0px 40px;
     border-bottom: .10px #D3D3D3 solid;
-    
+    color: #222222;
+
 
 
   }
@@ -50,11 +115,36 @@
 
   .spotButtons{
     
-   margin: 0px 10px  0px 10px;
-
+    margin: 0px 10px 0px 10px;
+    margin-left: 70%;
   }
   
-
+.fa-ellipsis{
+  font-size: 20px;
+}
+#editdelete{
+  cursor: pointer;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  height: auto;
+  padding: 10px;
+  border: #222222 .5px solid;
+  background-color: white;
+}
+.spotbutton{
+  background-color: transparent;
+  border-bottom: #222222 .5px solid;
+  border: transparent;
+  cursor: pointer;
+  margin: 5px;
+}
+#spotmenu{
+  background: transparent;
+  border: transparent;
+  cursor: pointer;
+}
   .spot-button {
     background: linear-gradient(to bottom right, #e82855, #ce0e78);
     color: white;
@@ -78,11 +168,25 @@
     display: flex;
     flex-direction: row;
     gap: 500px;
+    font-size: 12px;
+    color: #222222;
   }
 
   .star{
     
-    font-size: .90rem;
-    color: #FF385C
+    color: #222222;
+    margin-left: 20%;
   }
-
+.starbyid{
+  font-size: .90rem;
+    
+    color: #222222;
+}
+.headeridspotstar{
+  font-size: 1.2rem;
+  color: #222222;
+}
+#idspotstar{
+  font-size: 12px;
+  color: #222222;
+}

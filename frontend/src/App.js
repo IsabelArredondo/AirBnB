@@ -51,7 +51,7 @@ function App() {
 
           <Route exact path="/reviews">
             <Reviews />
-          </Route>
+          </Route> 
 
           <Route exact path="/reviews/create/:spotId">
             <CreateReview />
