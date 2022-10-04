@@ -32,6 +32,11 @@ const SpotDetails = () => {
     setShowMenu(true);
   };
 
+  const decimle = (value) => {
+    num = parseFloat(value)
+    return num.toFixed(1)
+  };
+
   useEffect(() => {
     if (!showMenu) return;
 
@@ -102,7 +107,7 @@ const SpotDetails = () => {
         </div>
         <div id='onespot' className="Description">
           <div className="starbyid">
-            <i id='idspotstar' className="fas fa-star"></i> {!spots?.avgStarRating ? <span> New</span> : <span>{` ${spots?.avgStarRating?.toFixed(1)} `}</span>}
+            <i id='idspotstar' className="fas fa-star"></i> {!spots?.avgStarRating ? <span> New</span> : <span>{ decimle(spots?.avgStarRating) }</span>}
             <span>{` · ${spots?.numReviews} reviews`}</span>
             <span>{` · ${spots?.city}, ${spots?.state}, ${spots?.country} `}</span>
 
