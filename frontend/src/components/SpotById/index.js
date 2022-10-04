@@ -33,7 +33,7 @@ const SpotDetails = () => {
   };
 
   const decimle = (value) => {
-    num = parseFloat(value)
+    let num = parseFloat(value)
     return num.toFixed(1)
   };
 
