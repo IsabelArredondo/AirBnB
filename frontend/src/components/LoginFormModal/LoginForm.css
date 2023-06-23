@@ -53,8 +53,9 @@
 .welcome{
   font-size: 22px;
   font-family: 'Circular', 'sans-serif';
-  margin: 16px 0px;
-  color: rgb(34, 34, 34)
+  margin-bottom: 16px;
+  margin-top: 0px;
+  color: rgb(34, 34, 34);
 
 }
 
