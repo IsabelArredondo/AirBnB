@@ -186,10 +186,10 @@ const SpotDetails = () => {
 
         <div className="Reviews">
           <div className="reviewtwo">
-            <h1><i className="fas fa-star headeridspotstar"></i> {!spots?.avgStarRating ? <span> New </span> : <span>{decimle(spots?.avgStarRating)}</span>}
-              <span> - </span> {spots?.numReviews} Reviews</h1>
+            {/* <h1><i className="fas fa-star headeridspotstar"></i> {!spots?.avgStarRating ? <span> New </span> : <span>{decimle(spots?.avgStarRating)}</span>}
+              <span> - </span> {spots?.numReviews} Reviews</h1> */}
 
-            <Reviews spotId={spotId} numReviews={numReviews} />
+            <Reviews spots={spots} spotId={spotId} numReviews={numReviews} />
           </div>
 
 
