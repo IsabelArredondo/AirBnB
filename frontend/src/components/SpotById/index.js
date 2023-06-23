@@ -54,8 +54,6 @@ const SpotDetails = () => {
     // dispatch(getAllReviewsBySpotId(spotId))
   }, [dispatch, spotId, JSON.stringify(spots)]);
 
-  const images = spots?.Images
-
   let numReviews = spots?.numReviews
 
   const removeSpot = (e) => {
