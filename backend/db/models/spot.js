@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
      
+      //we need to add roomnumber and amenities 
      Spot.belongsTo(models.User, {
        foreignKey: 'ownerId', as: 'Owner'
      })

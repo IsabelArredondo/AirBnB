@@ -13,7 +13,7 @@ const Reviews = ({spotId, spots}) => {
      const currentUser = useSelector((state) => state.session.user);
      
      const reviewsVariable = useSelector((state) => Object.values(state.reviews))
-
+       console.log(reviewsVariable)
      const userReviews =  reviewsVariable.filter(review => review?.userId === currentUser?.id);
    
     useEffect(() => {
