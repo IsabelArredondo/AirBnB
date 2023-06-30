@@ -12,14 +12,17 @@
     gap: .5rem;
 }
 #dot{
-    font-size: .25rem;
-    background-color: #ce0e78;
-    padding-bottom: .25rem;
-    bottom: 2rem;
+    font-size: .35rem;
+    align-self: center;
+    padding-top: .2rem;
 }
-
+#headingstar{
+    align-self: center;
+    font-size: 1rem;
+    margin-right: .2rem;
+}
 .star {
-
+    
     font-size: .90rem;
     color: #FF385C
 }

@@ -44,7 +44,7 @@ const Reviews = ({spotId, spots}) => {
                 
                 <div className='all-reviews-div' key={reviewState?.id}>
                   <div className="heading">
-                  <i className="fas fa-star headeridspotstar"></i> {!spots?.avgStarRating ? <span> New </span> : <span>{decimle(spots?.avgStarRating)} </span>}
+                  <i id='headingstar'className="fas fa-star headeridspotstar"></i> {!spots?.avgStarRating ? <span> New </span> : <span>{decimle(spots?.avgStarRating)} </span>}
                   <div id='dot'><i  class="fa-sharp fa-solid fa-circle"></i></div>
                    {reviewState.length}
                    {spots?.numReviews} reviews
