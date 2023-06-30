@@ -63,7 +63,7 @@ const Reviews = ({spotId, spots}) => {
                 <div className='actual-review'>
                   <p className='actual-review'>{reviewState?.review} </p>
                 </div>
-                
+
                   <div>
                     
 
@@ -71,7 +71,7 @@ const Reviews = ({spotId, spots}) => {
                      currentUser?.id === reviewState?.userId && (
                       
                       <div className="removebutton">
-                        <button className="review-button" onClick={removeReview(reviewState.id)}>Delete Your Review</button>
+                        <button className="review-button" onClick={removeReview(reviewState.id)}>Delete</button>
                         
                       </div>
                     )}
