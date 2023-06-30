@@ -4,6 +4,9 @@
 }
 #dot{
     font-size: .25rem;
+    background-color: #ce0e78;
+    padding-bottom: .25rem;
+    bottom: 2rem;
 }
 
 .star {
