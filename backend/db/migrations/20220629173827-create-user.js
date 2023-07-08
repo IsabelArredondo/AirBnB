@@ -27,6 +27,10 @@ module.exports = {
       // birthday: {
       //  type: Sequelize.DATE
       // },
+      // profilePicture: {
+      //   type: Sequelize.STRING(256),
+      //   allowNull: false
+      // },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
