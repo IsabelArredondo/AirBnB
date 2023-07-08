@@ -1,4 +1,7 @@
 "use strict";
+
+const { DATE } = require("sequelize/types");
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     return queryInterface.createTable("Users", {
@@ -20,6 +23,9 @@ module.exports = {
       //   type: Sequelize.STRING(30),
       //   allowNull: false,
       //   unique: true
+      // },
+      // birthday: {
+      //  type: Sequelize.DATE
       // },
       email: {
         type: Sequelize.STRING(256),
