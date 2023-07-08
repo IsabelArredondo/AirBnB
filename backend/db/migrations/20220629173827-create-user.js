@@ -31,6 +31,10 @@ module.exports = {
       //   type: Sequelize.STRING(256),
       //   allowNull: false
       // },
+      // aboutMe: {
+      //   type: Sequelize.STRING(256),
+      //   allowNull: false,
+      // },
       email: {
         type: Sequelize.STRING(256),
         allowNull: false,
