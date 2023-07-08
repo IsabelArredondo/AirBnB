@@ -54,6 +54,10 @@ module.exports = {
       //   type: Sequelize.STRING,
       //   allowNull: false,
       // },
+      // amenities: {
+      //   type: Sequelize.INTEGER,
+      //   allowNull: false
+      // },
       price: {
         type: Sequelize.INTEGER,
         allowNull: false
